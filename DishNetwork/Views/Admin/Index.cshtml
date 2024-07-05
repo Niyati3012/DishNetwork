@@ -1,0 +1,152 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model DishNetwork.Entity.ViewModels.AdminDetails
+<div class="content d-flex flex-column flex-column-fluid"
+     id="kt_content">
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::Row-->
+            <div class="row g-5 g-xl-8">
+                <div class="col-xl-12">
+                    <!--begin::Statistics Widget 5-->
+                    <div class="card bg-body-white mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="row card-body d-flex">
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <h1 class="my-0">Admin</h1>
+                                <button style="background-color: #4d4d69;" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#AddAdmin">
+                                    Add Admin
+                                </button>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr class=" border-bottom border-bottom-2 align-middle text-center fw-bold fs-6 text-gray-800">
+                                                <th style="width: 15%;">#.</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+
+                                                int i = 0;
+                                            }
+                                            @foreach (var item in Model.adminlist)
+                                            {
+                                                <tr class="align-middle text-center  border-bottom ">
+                                                    <td>@{
+                                                            i = i + 1;
+                                                        }@i</td>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.EmailId</td>
+                                                    <td>
+                                                        <button data-bs-toggle="modal"
+                                                           data-bs-target="#AddAdmin" data-bs-AdminId="@item.AdminId" data-bs-Name="@item.Name" data-bs-Email="@item.EmailId" class="btn btn-info"><i class="fa-solid fa-pen-to-square p-0"></i></button>
+                                                        <a asp-controller="Admin" asp-action="AdminDelete" asp-route-AdminId="@item.AdminId" class="btn btn-danger">
+                                                            <i class="fa-solid fa-trash p-0"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                         
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+
+                    <!--end::Statistics Widget 5-->
+                </div>
+            </div>
+            <!--end::Row-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Post-->
+</div>
+
+
+<div class="modal fade" tabindex="-1" id="AddAdmin">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add User</h3>
+
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                     data-bs-dismiss="modal"
+                     aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span><span class="path2"></span>
+                    </i>
+                </div>
+                <!--end::Close-->
+            </div>
+
+            <form class="row" asp-action="AdminAddEdit" asp-controller="Admin">
+                <div class="modal-body">
+                    <div class="col-md-12 mb-2">
+                        <input asp-for="AdminId" id="AdminId" hidden />
+                        <label for="exampleFormControlInput1"
+                               class="required form-label">Name</label>
+                        <input type="text" asp-for="Name" id="adminName"
+                               class="form-control form-control-solid"
+                               placeholder="Enter Name here..." />
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <label for="exampleFormControlInput1"
+                               class="required form-label">Email</label>
+                        <input type="text" asp-for="EmailId" id="adminEmail"
+                               class="form-control form-control-solid"
+                               placeholder="Enter Email here..." />
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="reset"
+                            class="btn btn-light"
+                            data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        if (document.getElementById('AddAdmin')) {
+            document.getElementById('AddAdmin').addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget
+                const AdminId = button.getAttribute('data-bs-AdminId')
+                const Name = button.getAttribute('data-bs-Name')
+                const Email = button.getAttribute('data-bs-Email')
+               
+                document.getElementById('AdminId').value = AdminId;
+                document.getElementById('adminName').value = Name;
+                document.getElementById('adminEmail').value = Email;
+                document.getElementById('adminEmail').disabled = true;
+            })
+        }
+
+        
+    </script>
+}

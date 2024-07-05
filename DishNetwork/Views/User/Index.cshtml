@@ -1,0 +1,223 @@
+﻿@model DishNetwork.Entity.ViewModels.UserDetails
+
+@{
+    var Menus = ViewBag.Menus;
+}
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid"
+     id="kt_content">
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::Row-->
+            <div class="row g-5 g-xl-8">
+                <div class="col-xl-12">
+                    <!--begin::Statistics Widget 5-->
+                    <div
+                       class="card bg-body-white hoverable card-xl-stretch mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h1>Users</h1>
+
+                                <button type="button"
+                                        style="background-color: #4d4d69;"
+                                        class="btn btn-info btn-theme my-0"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#UserAddEditModal">
+                                    Add User
+                                </button>
+
+                                
+                            </div>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <thead>
+                                                <tr class=" border-bottom-2  align-middle text- fw-bold fs-6 text-gray-800">
+                                                    <th>#.</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th style="width:15%;" >Menus</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.Users)
+                                                {
+                                                    <tr class="align-middle text-  border-bottom ">
+                                                        <td>
+                                                            1
+                                                        </td>
+                                                        <td>@item.UserName</td>
+                                                        <td>@item.Email</td>
+                                                        <td>
+                                                            @foreach (var item1 in item.MenuNames)
+                                                            {
+                                                                <span class="badge badge-light-info">@item1</span>
+                                                            }
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            <a data-bs-toggle="modal"
+                                                               data-bs-target="#UserAddEditModal" data-bs-UserId="@item.UserId" data-bs-Name="@item.UserName" data-bs-Email="@item.Email"
+                                                               data-bs-contactNo="@item.ContactNumber" data-bs-menus="@item.Menus"  class="btn btn-info">
+                                                               <i class="fa-solid fa-pen-to-square p-0"></i>
+                                                           </a>
+                                                            <a asp-controller="User" asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-danger"><i class="fa-solid fa-trash p-0"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Body-->
+                    </a>
+                    <!--end::Statistics Widget 5-->
+                </div>
+            </div>
+            <!--end::Row-->
+            <!--begin::Row-->
+            <!--end::Row-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Post-->
+</div>
+<!--end::Content-->
+
+    <div class="modal fade" tabindex="-1" id="UserAddEditModal">
+        <div class="modal-dialog">
+            <form asp-controller="User" asp-action="UserAddEdit" class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add User</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                         data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="ki-duotone ki-cross fs-1">
+                            <span class="path1"></span><span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <div class="row" asp-controller="User" asp-action="UserAddEdit">
+                        <div class="col-md-12 mb-2">
+                            <input id="UserId" asp-for="UserId" />
+                            <label for="exampleFormControlInput1"
+                                   class="required form-label">Name</label>
+                            <input type="text" asp-for="UserName" id="UserName"
+                                   class="form-control form-control-solid"
+                                   placeholder="Enter Name here..." />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="exampleFormControlInput1"
+                                   class="required form-label">Email</label>
+                            <input type="text" asp-for="Email" id="UserEmail"
+                                   class="form-control form-control-solid"
+                                   placeholder="Enter Email here..." />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="exampleFormControlInput1"
+                                   class="required form-label">Contact Number</label>
+                            <input type="text" asp-for="ContactNumber" id="contactNo"
+                                   class="form-control form-control-solid"
+                                   placeholder="Enter Number here..." />
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <input hidden id="Menus" asp-for="Menus" />
+                            <div class="row">
+                                @foreach (var item in Menus)
+                                {
+                                    <div class="col-6 mt-2">
+                                        <div class="form-check form-check-custom form-check-solid">
+                                            <input class="form-check-input checkbox"
+                                                   type="checkbox"
+                                                   value="@item.MenuId" name="UserMenu"
+                                                   id="@item.MenuId" />
+                                            <label class="form-check-label text-dark"
+                                                   for="@item.MenuId">
+                                                @item.MenuName
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-light"
+                            data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+@section Scripts{
+    <script>
+        
+        // let Menus = $('input[name="UserMenu"]:checked').map(function () {
+        //        return $(this).val();
+        //    }).get().join(',');
+        // $('#Menus').val(Menus);
+        // console.log(Menus + "njidc");
+        $('.form-check-input').change(function () {
+            let Menus = $('input[name="UserMenu"]:checked').map(function () {
+                return $(this).val();
+            }).get().join(',');
+            $('#Menus').val(Menus);
+            console.log(Menus);
+        });
+        
+            if (document.getElementById('UserAddEditModal')) {
+                document.getElementById('UserAddEditModal').addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget
+                const UserId = button.getAttribute('data-bs-UserId')
+                const Name = button.getAttribute('data-bs-Name')
+                const Email = button.getAttribute('data-bs-Email')
+                    const contactNo = button.getAttribute('data-bs-contactNo')
+                    const menus = button.getAttribute('data-bs-menus')
+
+
+                    document.getElementById('UserId').value = UserId;
+                    document.getElementById('UserName').value = Name;
+                    document.getElementById('UserEmail').value = Email;
+                    document.getElementById('UserEmail').disabled = true;
+                    document.getElementById('contactNo').value = contactNo;
+                    // Split the string into an array of IDs
+                    const idArray = menus.split(',');
+                    // Loop through the array of IDs
+                    idArray.forEach(id => {
+                        console.log(id);
+                        // Get the checkbox element by its ID
+                        var checkbox = document.getElementById(id);
+
+                        // If the checkbox exists, check it
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        }
+                    });
+
+            })
+        }
+    </script>
+}

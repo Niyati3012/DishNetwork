@@ -1,0 +1,83 @@
+﻿@model List<DishNetwork.Entity.Models.Device>
+<link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" rel="stylesheet">
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid"
+     id="kt_content">
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <div class="row g-5 g-xl-8">
+                <div class="col-md-12">
+                    <div class="card bg-body-white card-xl-stretch mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <div class="pb-5">
+                                <div class=" d-flex justify-content-between mb-3">
+                                    <h1 class="my-0">Devices</h1>
+                                    <a style="background-color: #4d4d69;"
+                                       class="btn btn-info btn-theme my-0"
+                                       asp-action="DevicesAddEdit" asp-controller="Devices">
+                                        Add Device
+                                    </a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table mb-0" id="DeviceListTable">
+                                        <thead>
+                                            <tr class="border-bottom-2 align-middle text- fw-bold fs-6 text-gray-800">
+                                                <th>#.</th>
+                                                <th>IP Address</th>
+                                                <th>Property Name</th>
+                                                <th>Contact Person Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr class="align-middle text- border-bottom">
+                                                    <td>1</td>
+                                                    <td>@item.Ipaddress</td>
+                                                    <td>@item.PropertyName</td>
+                                                    <td>@item.PersonName</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary">
+                                                            <i class="fa-solid fa-eye p-0"></i>
+                                                        </a>
+
+                                                        <a asp-controller="Devices" asp-action="DevicesAddEdit" asp-route-id="@item.DeviceId" class="btn btn-info mx-1">
+                                                            <i class="fa-solid fa-pen-to-square p-0"></i>
+                                                        </a>
+                                                        <a asp-controller="Devices" asp-action="DeleteDevices" asp-route-id="@item.DeviceId" class="btn btn-danger">
+                                                            <i class="fa-solid fa-trash p-0"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Post-->
+</div>
+
+<!--end::Content-->
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script>
+
+        let table = new DataTable('#DeviceListTable', {
+            paging: false
+        });
+       // document.getElementById('dt-search-0').setAttribute('class', 'form-control');
+    </script>
+}

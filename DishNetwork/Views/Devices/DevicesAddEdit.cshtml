@@ -1,0 +1,141 @@
+﻿@model DishNetwork.Entity.ViewModels.DevicesDetails
+
+
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::Row-->
+            <div class="row g-5 g-xl-8 ">
+                <div class="col-xl-12">
+                    <!--begin::Statistics Widget 5-->
+                    <div class="card bg-body-white mb-xl-8">
+                        <!--begin::Body-->
+                        <form class="row card-body d-flex" asp-action="AddEditDevice" asp-controller="Devices">
+                            <div class="col-md-12 d-flex justify-content-between mb-3">
+                                <h1 class="my-5">Devices Details</h1>
+                                <a asp-action="Index" asp-controller="Devices" class="btn btn-light-primary my-3">Back</a>
+                            </div>
+                            <input asp-for="DeviceId" hidden/>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">IP Address</label>
+                                <input type="text" asp-for="Ipaddress" class="form-control form-control-solid" placeholder="Enter IP Address here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">Port</label>
+                                <input type="text" asp-for="Port" class="form-control form-control-solid" placeholder="Enter Port here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">Contact Person Name</label>
+                                <input type="text" asp-for="PersonName" class="form-control form-control-solid" placeholder="Enter Contact Person Name here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">Property Name</label>
+                                <input type="text" asp-for="PropertyName" class="form-control form-control-solid" placeholder="Enter Property Name here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="form-label">Number of Rooms</label>
+                                <input type="text" asp-for="NoOfRooms" class="form-control form-control-solid" placeholder="Enter Number of Rooms here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="form-label">Equipment Type</label>
+                                <select class="form-select form-select-solid" asp-for="Equipment" aria-label="Select example">
+                                    <option>Open this select menu</option>
+                                    <option value="1">Lease</option>
+                                    <option value="2">Elite</option>
+                                    <option value="3">BuyOut</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="form-label">Contract Expiry Date</label>
+                                <input class="form-control form-control-solid" asp-for="ExpiryDate" placeholder="" id="kt_daterangepicker_3" />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">Maintainace Contract</label>
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <input class="form-check-input" asp-for="MaintainanceContract" type="radio" name="MaintainanceContract" value="true" id="flexRadioDefaultyes" />
+                                    <label class="form-check-label" for="flexRadioDefault">
+                                        yes
+                                    </label>
+                                    <input class="form-check-input ms-3" asp-for="MaintainanceContract" type="radio" name="MaintainanceContract" value="false" id="flexRadioDefaultno" />
+                                    <label class="form-check-label" for="flexRadioDefault">
+                                        no
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12">
+                                <h1 class="my-5">Location Details</h1>
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">Address</label>
+                                <input type="text" class="form-control form-control-solid" asp-for="Address" placeholder="Enter Address here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">State</label>
+                                <select class="form-select form-select-solid" asp-for="State" aria-label="Select example">
+                                    <option>Open this select menu</option>
+                                    <option value="1">Lease</option>
+                                    <option value="2">Elite</option>
+                                    <option value="3">BuyOut</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">City</label>
+                                <select class="form-select form-select-solid" asp-for="City" aria-label="Select example">
+                                    <option>Open this select menu</option>
+                                    <option value="1">Lease</option>
+                                    <option value="2">Elite</option>
+                                    <option value="3">BuyOut</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">ZipCode</label>
+                                <input type="text" asp-for="ZipCode" class="form-control form-control-solid" placeholder="Enter ZipCode here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">GoogleMap Location Link</label>
+                                <input type="text" asp-for="GoogleMap" class="form-control form-control-solid" placeholder="Enter Link here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">Email</label>
+                                <input type="text" asp-for="EmailId" class="form-control form-control-solid" placeholder="Enter Email here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">Contact Number</label>
+                                <input type="text" asp-for="ContactNo" class="form-control form-control-solid" placeholder="Enter contact number here..." />
+                            </div>
+                            <div class="col-md-12">
+                                <h1 class="my-5">VPN Details</h1>
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">VPN UserName</label>
+                                <input type="text" asp-for="VpnUserName" class="form-control form-control-solid" placeholder="Enter VPN UserName here..." />
+                            </div>
+                            <div class="col-md-6 mb-10">
+                                <label for="exampleFormControlInput1" class="required form-label">VPN Password </label>
+                                <input type="text" asp-for="VpnPassword" class="form-control form-control-solid" placeholder="Enter VPN Pasword here..." />
+                            </div>
+                            <div class="col-md-12 text-end  mb-10">
+                                <button type="submit" class="btn btn-primary">Add Devices</button>
+                            </div>
+
+                        </form>
+                        <!--end::Body-->
+                    </div>
+
+
+                    <!--end::Statistics Widget 5-->
+                </div>
+
+            </div>
+            <!--end::Row-->
+
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Post-->
+</div>
+<!--end::Content-->

@@ -1,0 +1,44 @@
+﻿@using DishNetwork.Constants
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V4</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/fonts/font-awesome-4.7.0/css/font-awesome.min.css")">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/fonts/iconic/css/material-design-iconic-font.min.css")">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/util.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/login.css")">
+	<!--===============================================================================================-->
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100" style="background: linear-gradient(to right, #213645 0%, #4c789c 100%);">
+			<!--begin::Content-->
+			@RenderBody()
+			<!--end::Content-->
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+	<!--===============================================================================================-->
+	<script src="@Url.Content("~/js/main.js")"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<script>
+
+		var enumAccessDenied = parseInt('@Enums.StatusCode.AccessDenied.GetHashCode()');
+		var enumAccessDenied = parseInt('@Enums.StatusCode.AccessDenied.GetHashCode()');
+		var enumOk = parseInt('@Enums.StatusCode.Ok.GetHashCode()');
+		var enumNotAllowed = parseInt('@Enums.StatusCode.NotAllowed.GetHashCode()');
+		var enumBadRequest = parseInt('@Enums.StatusCode.BadRequest.GetHashCode()');
+		var enumServerError = parseInt('@Enums.StatusCode.ServerError.GetHashCode()');
+		var enumConflict = parseInt('@Enums.StatusCode.Conflict.GetHashCode()');
+	</script>
+</body>
+</html>

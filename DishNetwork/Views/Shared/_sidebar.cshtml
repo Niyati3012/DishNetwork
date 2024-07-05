@@ -1,0 +1,107 @@
+﻿@{
+    string path = Context.Request.Path;
+}
+@using DishNetwork.Entity.ViewModels
+@using DishNetwork.Repository.Repository.Interfaces;
+@using static DishNetwork.Repository.Repository.LoginRepository;
+@inject ILoginRepository loginRepository;
+@inject IUserRepository userRepository;
+@{
+    var roleid = Convert.ToInt32(CV.RoleId());
+    List<MenuItem> Staticmenu = new List<MenuItem>();
+    if (roleid == 3)
+    {
+        var userId = userRepository.GetUserByAspNetId(CV.AspNetUserID());
+        Staticmenu = loginRepository.SetMenuForUser((int)userId.UserId);
+
+    }
+    else
+    {
+        Staticmenu = loginRepository.SetMenu(roleid);
+        
+    }
+}
+<!--begin::Aside-->
+<div id="kt_aside"
+     class="aside"
+     data-kt-drawer="true"
+     data-kt-drawer-name="aside"
+     data-kt-drawer-activate="{default: true, lg: false}"
+     data-kt-drawer-overlay="true"
+     data-kt-drawer-width="{default:'200px', '300px': '250px'}"
+     data-kt-drawer-direction="start"
+     data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+    <!--begin::Aside menu-->
+    <div class="aside-menu flex-column-fluid">
+        <!--begin::Aside Menu-->
+        <div class="hover-scroll-overlay-y px-2 my-5 my-lg-5"
+             id="kt_aside_menu_wrapper"
+             data-kt-scroll="true"
+             data-kt-scroll-height="auto"
+             data-kt-scroll-dependencies="{default: '#kt_aside_toolbar, #kt_aside_footer', lg: '#kt_header, #kt_aside_toolbar, #kt_aside_footer'}"
+             data-kt-scroll-wrappers="#kt_aside_menu"
+             data-kt-scroll-offset="5px">
+            <!--begin::Menu-->
+            <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
+                 id="#kt_aside_menu"
+                 data-kt-menu="true">
+                <div class="menu-item ">
+                    <div class="menu-content pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Dashboard</span>
+                    </div>
+                </div>
+                @foreach (var menuItem in Staticmenu)
+                {
+                        <div class="menu-item">
+                            <a class="menu-link @(path == "/Admin" ? "active" : "")" href="@menuItem.Url" >
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="24"
+                                             height="24"
+                                             viewBox="0 0 24 24"
+                                             fill="none">
+                                            <rect x="2"
+                                                  y="2"
+                                                  width="9"
+                                                  height="9"
+                                                  rx="2"
+                                                  fill="black" />
+                                            <rect opacity="0.3"
+                                                  x="13"
+                                                  y="2"
+                                                  width="9"
+                                                  height="9"
+                                                  rx="2"
+                                                  fill="black" />
+                                            <rect opacity="0.3"
+                                                  x="13"
+                                                  y="13"
+                                                  width="9"
+                                                  height="9"
+                                                  rx="2"
+                                                  fill="black" />
+                                            <rect opacity="0.3"
+                                                  x="2"
+                                                  y="13"
+                                                  width="9"
+                                                  height="9"
+                                                  rx="2"
+                                                  fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                            <span class="menu-title">@menuItem.Label</span>
+                            </a>
+                        </div>
+                }
+            </div>
+            <!--end::Menu-->
+        </div>
+        <!--end::Aside Menu-->
+    </div>
+    <!--end::Aside menu-->
+</div>
+<!--end::Aside-->

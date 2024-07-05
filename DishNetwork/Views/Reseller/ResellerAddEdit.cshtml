@@ -1,0 +1,123 @@
+﻿@model DishNetwork.Entity.ViewModels.ResellerDetails
+
+
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::Row-->
+            <div class="row g-5 g-xl-8 ">
+                <div class="col-xl-12">
+                    <!--begin::Statistics Widget 5-->
+                    <div class="card bg-body-white ">
+                        <!--begin::Body-->
+                        <div class="row card-body d-flex ">
+                            <div class="col-md-12 d-flex justify-content-between ">
+                                <h1 class="my-5">Reseller Details</h1>
+                                <a asp-controller="Reseller" asp-action="Index" class="btn btn-light-primary my-3">Back</a>
+                            </div>
+                            <form class="row" asp-action="AddEditReseller" asp-controller="Reseller" enctype="multipart/form-data">
+                                <input hidden asp-for="ResellerId" />
+                                <div class="col-md-6 mb-2">
+                                    <label for="exampleFormControlInput1"
+                                           class="required form-label">Name</label>
+                                    <input type="text" asp-for="Name"
+                                           class="form-control form-control-solid"
+                                           placeholder="Enter Name here..." />
+                                </div>
+                                @if (Model != null)
+                                {
+                                    <div class="col-md-6 mb-2">
+                                        <label for="exampleFormControlInput1"
+                                               class="required form-label">Email</label>
+                                        <input type="text" asp-for="EmailId" readonly
+                                               class="form-control form-control-solid"
+                                               placeholder="Enter Email here..." />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-6 mb-2">
+                                        <label for="exampleFormControlInput1"
+                                               class="required form-label">Email</label>
+                                        <input type="text" asp-for="EmailId"
+                                               class="form-control form-control-solid"
+                                               placeholder="Enter Email here..." />
+                                    </div>
+                                }
+
+                                <div class="col-md-6 mb-2">
+                                    <label for="exampleFormControlInput1"
+                                           class="required form-label">Contact Number</label>
+                                    <input type="text" asp-for="ContactNumber"
+                                           class="form-control form-control-solid"
+                                           placeholder="Enter Contact Number here..." />
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="exampleFormControlInput1"
+                                           class="required form-label">Logo</label>
+                                    <input type="file" asp-for="Logoimage"
+                                           class="form-control form-control-solid"
+                                           placeholder="Enter Logo here..." />
+                                </div>
+                                <div class="col-md-12 mb-2">
+                                    <label for="exampleFormControlInput1"
+                                           class="required form-label">Address 1</label>
+                                    <input type="text" asp-for="Address1"
+                                           class="form-control form-control-solid"
+                                           placeholder="Enter Address 1 here..." />
+                                </div>
+                                <div class="col-md-12 mb-2">
+                                    <label for="exampleFormControlInput1"
+                                           class="required form-label">Address 2</label>
+                                    <input type="text" asp-for="Address2"
+                                           class="form-control form-control-solid"
+                                           placeholder="Enter Address 2 here..." />
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <label for="exampleFormControlInput1"
+                                           class="required form-label">Zipcode</label>
+                                    <input type="text" asp-for="ZipCode"
+                                           class="form-control form-control-solid"
+                                           placeholder="Enter Zipcode here..." />
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <label for="exampleFormControlInput1"
+                                           class="required form-label">City</label>
+                                    <input type="text" asp-for="City"
+                                           class="form-control form-control-solid"
+                                           placeholder="Enter City here..." />
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <label for="exampleFormControlInput1"
+                                           class="required form-label">State</label>
+                                    <input type="text" asp-for="State"
+                                           class="form-control form-control-solid"
+                                           placeholder="Enter State here..." />
+                                </div>
+                                <div class="col-md-12 text-end my-10 pe-40">
+                                    <button type="submit" class="btn btn-primary">Add Account</button>
+
+                                </div>
+                            </form>
+
+
+                        </div>
+                        <!--end::Body-->
+                    </div>
+
+
+                    <!--end::Statistics Widget 5-->
+                </div>
+
+            </div>
+            <!--end::Row-->
+
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Post-->
+</div>
+<!--end::Content-->

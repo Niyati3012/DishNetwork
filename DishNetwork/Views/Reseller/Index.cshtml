@@ -1,0 +1,77 @@
+﻿
+@model DishNetwork.Entity.ViewModels.ResellerDetails
+
+
+ <!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid"
+     id="kt_content">
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::Row-->
+            <div class="row g-5 g-xl-8">
+                <div class="col-xl-12">
+                    <!--begin::Statistics Widget 5-->
+                    <div class="card bg-body-white mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="row card-body d-flex ">
+                            <div class="col-md-12 d-flex justify-content-between mb-3">
+                                <h1 class="my-0">Reseller</h1>
+                                <a style="background-color: #4d4d69;"
+                                   class="btn btn-info btn-theme my-0"
+                                   asp-controller="Reseller" asp-action="ResellerAddEdit">
+                                    Add Reseller
+                                </a>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr class=" border-bottom-2  align-middle text-center fw-bold fs-6 text-gray-800">
+                                                <th style="width: 15%;">#.</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th style="width: 20%;">Address</th>
+                                                <th style="width: 20%;">Last Modified Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach(var item in Model.Resellers)
+                                            {
+                                                <tr class="align-middle text-center  border-bottom ">
+                                                    <td>
+                                                        <img src="@item.Logo" class="img-fluid p-1" />
+                                                    </td>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.EmailId</td>
+                                                    <td>@item.Address1 @item.Address2 @item.ZipCode @item.City @item.State</td>
+                                                    <td>@item.ModifiedDate</td>
+                                                    <td>
+                                                        <a asp-action="ResellerAddEdit" asp-controller="Reseller" asp-route-ResellerId="@item.ResellerId" class="btn btn-info"><i class="fa-solid fa-pen-to-square p-0"></i></a>
+                                                        <a asp-action="ResellerDelete" asp-controller="Reseller" asp-route-ResellerId="@item.ResellerId" class="btn btn-danger"><i class="fa-solid fa-trash p-0"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+
+                    <!--end::Statistics Widget 5-->
+                </div>
+            </div>
+            <!--end::Row-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Post-->
+</div>
+<!--end::Content-->
