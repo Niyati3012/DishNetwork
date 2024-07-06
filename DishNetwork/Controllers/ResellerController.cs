@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DishNetwork.Controllers
 {
+    [AuthManager("Admin")]
     public class ResellerController : Controller
     {
         private readonly IResellerRepository _resellerRepository;

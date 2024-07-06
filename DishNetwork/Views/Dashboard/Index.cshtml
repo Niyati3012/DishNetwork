@@ -56,13 +56,13 @@
 					<div class="card bg-body-white card-xl-stretch mb-xl-8"
 						 style="width: 100%; height: 60rem">
 						<!--begin::Body-->
-						<div class="card-body">
+						<div class="card-body" id="map">
 
-							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.143784501739!2d70.8694083!3d22.7971355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39598ddb5ae21519%3A0xccd67a8d505f424e!2sKetone%20laminates!5e0!3m2!1sen!2sin!4v1678167872496!5m2!1sen!2sin"
+							@* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.143784501739!2d70.8694083!3d22.7971355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39598ddb5ae21519%3A0xccd67a8d505f424e!2sKetone%20laminates!5e0!3m2!1sen!2sin!4v1678167872496!5m2!1sen!2sin"
 									frameborder="0"
 									style="border: 0; width: 100%; height: 90%"
 									allowfullscreen=""
-									loading="lazy"></iframe>
+									loading="lazy"></iframe> *@
 						</div>
 						<!--end::Body-->
 					</div>
@@ -76,3 +76,111 @@
 	<!--end::Post-->
 </div>
 <!--end::Content-->
+
+
+
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+
+	$(document).ready(function () {
+		$.ajax({
+			url: '/Dashboard/GetLocations', // Adjust the URL to match your controller method
+			type: 'GET', // or 'POST' depending on your controller method
+			//dataType: 'json', // The type of data you're expecting back from the server
+			success: function (response) {
+				// Use the data from the response
+				console.log(response); // Adjust this to match your response structure
+				var deviceArray = response.map(function (device) {
+					return [device.deviceId, device.ipAddress, device.latitude, device.longitude];
+				});
+
+				// Iterate through all entries and manipulate as needed
+				deviceArray.forEach(function (device) {
+					console.log("Device ID:", device[0]);
+					console.log("IP Address:", device[1]);
+					console.log("Latitude:", device[2]);
+					console.log("Longitude:", device[3]);
+				});
+
+			},
+			error: function (xhr, status, error) {
+				console.error("AJAX Error: ", status, error);
+			}
+		});
+	});
+
+
+
+	// // Initialize the map and set its view to a specified location and zoom level
+	// var map = L.map('map').setView([51.505, -0.09], 13);
+
+	// // Add a tile layer to the map (OpenStreetMap tiles)
+	// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	// 	maxZoom: 19,
+	// 	attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	// }).addTo(map);
+
+	// // Define custom icons
+	// var greenIcon = L.icon({
+	// 	iconUrl: 'data:image/png;base64,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',
+	// 	iconSize: [32, 32], // size of the icon
+	// 	iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
+	// 	popupAnchor: [0, -32] // point from which the popup should open relative to the iconAnchor
+	// });
+
+	// var redIcon = L.icon({
+	// 	iconUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAMAAABC4vDmAAAAb1BMVEX/////AAD/gYH/8/P/9vb//Pz/+fn/4uL/2Nj/5ub/iYn/6+v/k5P/mpr/i4v/Kir/HR3/qqr/pKT/dHT/R0f/ysr/XV3/uLj/Ly//OTn/fX3/FRX/n5//a2v/tLT/wcH/Tk7/VVX/0dH/Y2P/QEDAizVuAAAFG0lEQVR4nM2c24KiMAyGRUQUVFDxyHhA5/2fcUHGGUCapCRt97temH9LmlNTRyMufvi4rRfRuCRabA67Wcx+JZPwa1skXos0uyx2zgT5uyj3VOwPoQNJ8fKuVPTieLa9Xo8xrKgmu07tSZpv1d+tTXGwJCleEBW92Fv5iLujjqaSxcS0JH+rKankNDOraYZsuX7yjUlNhyGSKsbmPuFyqCbPuxtSFayGayp9lpmQeOZoKs19bkATa51equTXSstj9pNJ29XgfdfkIqtpJ6HJ81aSmvyTjCjvJihqQGzpJ5XbgiIGVSNmVnGC/zEyayFRbA/VJJHxCzNJTZ4XiYi6yIpKJMocIRf1h8RSEeNwniTUasJna5rjf+S4vc6D1z+ObxEhNV2wRaGBOP9qOUT/9o09wU74YizARJ/15hWrd7jB5oYsU+/753vkP8IUFYFvz1ShDKnqA5amAHy3OsMN4D3LKwRD6NVgyAddLi+v2kCvBu01hjbhniXqCbx5DD8KRQJWZeMDrjDFihPgA+YPhqgZkEmhdgFlF1eGKOgToF8gAJLoJUMUkAdvcV9zBZ5miAI2HyGtjdVpQ8YQBSTCFP+njps5Q5TaKnJK3xfYfwxRajd1pDwOLDRDlDrak4ziy7KoO+VxYJ8YEXWiPA60Ixmi1JaaUh4H8heGKHWCnlPacpnycdI+UbBW/1cJeXaQKp9+MkQBsY+QZwNPc2JfqK5LMrykBKozTj0zLRjvBTpIR1Y/Acg+UPcJGOSddTgJlX1IngDkCMzCfQKISmCvAJV+zLO2Anj1HsrzgI/nJTxN4Lu9lVrVDuoLcRxCBVQ6AMUDqClln5TCvYpzv7c6qH15ScFrJYzQHnrWU8H5SHuDU1/VTLCmYdSptfwr1nYXaFrjZ2rR4e8jPpbohAC/u1j+GdA+apLsslpultHzhDdjU07J/gvSltOF13F5I9xIlxkzmaoTyAFkQoNCQE9AH74/qPF1R24AjmKH22CTUQ+p474yNSJ4BRoJ/1zmF6D+1kNyPGgutFSp4EKJzG9UyM5RzalneSCSFlXBGJ36Q3rgTGKpZC2qQsCq5HzUG/4GNDA/xfdV8gsFV7wUEiNzxMylMjNFjJ5xg9zFt14NWC27WajRKGCMLH0b0sRKQSXn3tr4xVBNT4Mj/IPn4IxOyg8sbGRqPRUDa0CzVwqCQWNnZ6OaBg7oGb/XM2CpOKfYNGbacZnfTcQh3S1qIjrFrMDXFWUoErfRHJCVaNzhhFpxWWTWlIBWucVt5FOBDmw+sGJRFRqJsa2FKsstcmJsy6IqyF00O1uvZkoVZc2iKohLZc+iKmjlFu/8Wh/SBrQR9Zqgh1sV1i+UE5bK9kKVvgrt+NvIo7qgyYL5hPOTGBPlYKGw+Xnpy3xEZnDD0Vz3AASaC/cy9jn/MMAa0Nb1/y5BodaUGr9lrwJowtgNxU0mSgfqwnG+UZYQbvxBjfL2mLvfUBkpZ16/nZl5hcLUbabmnwS9GWju0MwregMg5waDBL2XtUycV+kwKXpEufiZoBY9xdbF4o/x9PP4rCDchZhfPq7Mud57FR+5OnfeVYJHVxRy788KcTdVcBr3fujemEMvI1qh4xSeToPxm06q7jYYvwnanspVxdChdTJJuuVjgdZpDek+lAVamZ7Zk1k6LUu335TqJ2xauutc6k3rGvv/4M8rJs3hcJFpcwGmzXNl51nnD83oJ/izSTyaopL/RdRofR6/WUmcxvwDuEY/6DCHXSYAAAAASUVORK5CYII=',
+	// 	iconSize: [32, 32], // size of the icon
+	// 	iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
+	// 	popupAnchor: [0, -32] // point from which the popup should open relative to the iconAnchor
+	// });
+
+	// let locations = [
+	// 	[51.505, -0.09, true, "niyati@gmail.com", "Niyati Kaneriya"],
+	// 	[51.515, -0.10, false, "krina@gmail.com", "Krina Bhalodiya"],
+	// 	[51.525, -0.11, true, "Shreyans@gmail.com", "Shreayans Padmani"],
+	// 	[51.535, -0.12, false, "Jay@gmail.com", "Jay Shanghani"],
+	// 	[51.545, -0.13, true, "Himanshu@gmail.com", "Himanshu Babariya"]
+	// ];
+
+	// function populateModal(lat, lon, email, name, category) {
+	// 	var modalTitle = name; // Modify as needed
+	// 	var modalBody = `
+	// 				<p>Latitude: ${lat}</p>
+	// 				<p>Longitude: ${lon}</p>
+	// 				<p>Email: ${email}</p>
+	// 					<p>Name: ${name}</p>
+	// 				<p>Category: ${category ? 'Green' : 'Red'}</p>
+	// 			`;
+	// 	$('#exampleModalLabel').text(modalTitle); // Set modal title
+	// 	$('#exampleModal .modal-body').html(modalBody); // Update modal body content
+	// 	$('#exampleModal').modal('show');
+	// }
+
+	// locations.forEach(function (location) {
+	// 	var icon = location[2] ? greenIcon : redIcon;
+
+	// 	var marker = L.marker([location[0], location[1]], { icon: icon }).addTo(map);
+
+	// 	marker.on('click', function () {
+	// 		populateModal(location[0], location[1], location[3], location[4], location[2]);
+	// 	});
+	// });
+
+
+	// // Add a popup on click
+	// var popup = L.popup();
+
+	// function onMapClick(e) {
+	// 	popup
+	// 		.setLatLng(e.latlng)
+	// 		.setContent('You clicked the map at ' + e.latlng.toString())
+	// 		.openOn(map);
+	// }
+
+	// map.on('click', onMapClick);
+</script>

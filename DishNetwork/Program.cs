@@ -18,6 +18,8 @@ builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 builder.Services.AddScoped<ISendEmailRepository, SendEmailRepository>();
 builder.Services.AddScoped<IDevicesDashboardRepository, DevicesDashboardRepository>();
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+
 builder.Services.AddSession(
 options =>
 {

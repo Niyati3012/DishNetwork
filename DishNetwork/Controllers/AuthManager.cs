@@ -1,8 +1,11 @@
-﻿using DishNetwork.Repository.Repository.Interfaces;
+﻿using DishNetwork.Entity.Models;
+using DishNetwork.Entity.ViewModels;
+using DishNetwork.Repository.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using static DishNetwork.Repository.Repository.LoginRepository;
 
 namespace DishNetwork.Controllers
 {
@@ -57,12 +60,19 @@ namespace DishNetwork.Controllers
 				}
 			}
 
-			if (!flage)
+            var Path = context.HttpContext.Request.Path;
+
+
+            List<MenuItem> Staticmenu = loginService.SetMenu(Convert.ToInt32(CV.RoleId()));
+
+            bool isPathAvailable = Staticmenu.Any(item =>
+                item.Url.Equals(Path, StringComparison.OrdinalIgnoreCase)
+                );
+			if((Staticmenu == null || !flage || !isPathAvailable))
 			{
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { Controller = "Login", action = "AccessDenied" }));
 
-                    context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { Controller = "Login", action = "AccessDenied" }));
-			}
-
+            }
 		}
 
 	}

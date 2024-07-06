@@ -13,5 +13,6 @@ namespace DishNetwork.Repository.Repository.Interfaces
         public List<Admin> GetAllAdmin();
         public string AdminAddEdit(AdminDetails adminDetails);
         public bool DeleteAdmin(int adminId);
+        public bool FileLog(string FileName, string ip);
     }
 }

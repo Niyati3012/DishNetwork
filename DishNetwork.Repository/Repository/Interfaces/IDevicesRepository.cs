@@ -15,5 +15,6 @@ namespace DishNetwork.Repository.Repository.Interfaces
         public DevicesDetails GetDevicesDetails(int DeviceId);
 
         public string DeleteDevices(int DeviceId);
+        
     }
 }

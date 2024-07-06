@@ -33,17 +33,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @{
+                                                var i = 1;
+                                            }
                                             @foreach (var item in Model)
                                             {
                                                 <tr class="align-middle text- border-bottom">
-                                                    <td>1</td>
+                                                    <td>@i @{i = i + 1;}</td>
                                                     <td>@item.Ipaddress</td>
                                                     <td>@item.PropertyName</td>
                                                     <td>@item.PersonName</td>
                                                     <td>
-                                                        <a href="#" class="btn btn-primary">
+                                                      @*   <a href="#" class="btn btn-primary">
                                                             <i class="fa-solid fa-eye p-0"></i>
-                                                        </a>
+                                                        </a> *@
 
                                                         <a asp-controller="Devices" asp-action="DevicesAddEdit" asp-route-id="@item.DeviceId" class="btn btn-info mx-1">
                                                             <i class="fa-solid fa-pen-to-square p-0"></i>
@@ -76,7 +79,8 @@
     <script>
 
         let table = new DataTable('#DeviceListTable', {
-            paging: false
+            paging: false,
+            searching: false
         });
        // document.getElementById('dt-search-0').setAttribute('class', 'form-control');
     </script>

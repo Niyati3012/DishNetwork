@@ -14,8 +14,7 @@
             <div class="row g-5 g-xl-8">
                 <div class="col-xl-12">
                     <!--begin::Statistics Widget 5-->
-                    <div
-                       class="card bg-body-white hoverable card-xl-stretch mb-xl-8">
+                    <div class="card bg-body-white hoverable card-xl-stretch mb-xl-8">
                         <!--begin::Body-->
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
@@ -29,7 +28,7 @@
                                     Add User
                                 </button>
 
-                                
+
                             </div>
                             <div>
                                 <div class="col-md-12">
@@ -40,7 +39,7 @@
                                                     <th>#.</th>
                                                     <th>Name</th>
                                                     <th>Email</th>
-                                                    <th style="width:15%;" >Menus</th>
+                                                    <th style="width:15%;">Menus</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -58,19 +57,19 @@
                                                             {
                                                                 <span class="badge badge-light-info">@item1</span>
                                                             }
-                                                            
+
                                                         </td>
                                                         <td>
                                                             <a data-bs-toggle="modal"
                                                                data-bs-target="#UserAddEditModal" data-bs-UserId="@item.UserId" data-bs-Name="@item.UserName" data-bs-Email="@item.Email"
-                                                               data-bs-contactNo="@item.ContactNumber" data-bs-menus="@item.Menus"  class="btn btn-info">
-                                                               <i class="fa-solid fa-pen-to-square p-0"></i>
-                                                           </a>
+                                                               data-bs-contactNo="@item.ContactNumber" data-bs-menus="@item.Menus" class="btn btn-info">
+                                                                <i class="fa-solid fa-pen-to-square p-0"></i>
+                                                            </a>
                                                             <a asp-controller="User" asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-danger"><i class="fa-solid fa-trash p-0"></i></a>
                                                         </td>
                                                     </tr>
                                                 }
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -78,19 +77,19 @@
                             </div>
                         </div>
                         <!--end::Body-->
-                    </a>
-                    <!--end::Statistics Widget 5-->
+                        </a>
+                        <!--end::Statistics Widget 5-->
+                    </div>
                 </div>
+                <!--end::Row-->
+                <!--begin::Row-->
+                <!--end::Row-->
             </div>
-            <!--end::Row-->
-            <!--begin::Row-->
-            <!--end::Row-->
+            <!--end::Container-->
         </div>
-        <!--end::Container-->
+        <!--end::Post-->
     </div>
-    <!--end::Post-->
-</div>
-<!--end::Content-->
+    <!--end::Content-->
 
     <div class="modal fade" tabindex="-1" id="UserAddEditModal">
         <div class="modal-dialog">
@@ -172,52 +171,55 @@
     </div>
 
 
-@section Scripts{
-    <script>
-        
-        // let Menus = $('input[name="UserMenu"]:checked').map(function () {
-        //        return $(this).val();
-        //    }).get().join(',');
-        // $('#Menus').val(Menus);
-        // console.log(Menus + "njidc");
-        $('.form-check-input').change(function () {
-            let Menus = $('input[name="UserMenu"]:checked').map(function () {
-                return $(this).val();
-            }).get().join(',');
-            $('#Menus').val(Menus);
-            console.log(Menus);
-        });
-        
+    @section Scripts {
+        <script>
+
+            // let Menus = $('input[name="UserMenu"]:checked').map(function () {
+            //        return $(this).val();
+            //    }).get().join(',');
+            // $('#Menus').val(Menus);
+            // console.log(Menus + "njidc");
+            $('.form-check-input').change(function () {
+                let Menus = $('input[name="UserMenu"]:checked').map(function () {
+                    return $(this).val();
+                }).get().join(',');
+                $('#Menus').val(Menus);
+                console.log(Menus);
+            });
+
             if (document.getElementById('UserAddEditModal')) {
                 document.getElementById('UserAddEditModal').addEventListener('show.bs.modal', event => {
-                const button = event.relatedTarget
-                const UserId = button.getAttribute('data-bs-UserId')
-                const Name = button.getAttribute('data-bs-Name')
-                const Email = button.getAttribute('data-bs-Email')
+                    const button = event.relatedTarget
+                    const UserId = button.getAttribute('data-bs-UserId')
+                    const Name = button.getAttribute('data-bs-Name')
+                    const Email = button.getAttribute('data-bs-Email')
                     const contactNo = button.getAttribute('data-bs-contactNo')
                     const menus = button.getAttribute('data-bs-menus')
 
-
+                    console.log(UserId);
                     document.getElementById('UserId').value = UserId;
                     document.getElementById('UserName').value = Name;
                     document.getElementById('UserEmail').value = Email;
+                    if(UserId != null){
                     document.getElementById('UserEmail').disabled = true;
+                        const idArray = menus.split(',');
+                        // Loop through the array of IDs
+                        idArray.forEach(id => {
+                            console.log(id);
+                            // Get the checkbox element by its ID
+                            var checkbox = document.getElementById(id);
+
+                            // If the checkbox exists, check it
+                            if (checkbox) {
+                                checkbox.checked = true;
+                            }
+                        });
+                    }
                     document.getElementById('contactNo').value = contactNo;
                     // Split the string into an array of IDs
-                    const idArray = menus.split(',');
-                    // Loop through the array of IDs
-                    idArray.forEach(id => {
-                        console.log(id);
-                        // Get the checkbox element by its ID
-                        var checkbox = document.getElementById(id);
+                    
 
-                        // If the checkbox exists, check it
-                        if (checkbox) {
-                            checkbox.checked = true;
-                        }
-                    });
-
-            })
-        }
-    </script>
-}
+                })
+            }
+        </script>
+    }

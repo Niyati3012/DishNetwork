@@ -123,3 +123,4 @@ C:\Users\Niyati\Desktop\Project\DishNetwork\obj\Debug\net7.0\refint\DishNetwork.
 C:\Users\Niyati\Desktop\Project\DishNetwork\obj\Debug\net7.0\DishNetwork.pdb
 C:\Users\Niyati\Desktop\Project\DishNetwork\obj\Debug\net7.0\DishNetwork.genruntimeconfig.cache
 C:\Users\Niyati\Desktop\Project\DishNetwork\obj\Debug\net7.0\ref\DishNetwork.dll
+C:\Users\Niyati\Desktop\Project\DishNetwork\obj\Debug\net7.0\DishNetwork.sourcelink.json

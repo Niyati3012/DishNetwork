@@ -56,6 +56,7 @@ namespace DishNetwork.Repository.Repository
         {
             try
             {
+                var cuurantAspNetUserId = CV.AspNetUserID();
                 if (userDetails.UserId != default)
                 {
                     //edit reseller
@@ -65,56 +66,64 @@ namespace DishNetwork.Repository.Repository
                     user.ModifiedDate = DateTime.Now;
                     _context.Users.Update(user);
                     _context.SaveChanges();
-					if (!string.IsNullOrWhiteSpace(userDetails.Menus))
-					{
-						var olduserWiseMenus = _context.UserWiseMenus.Where(x => x.UserId == userDetails.UserId).ToList();
+                    if (!string.IsNullOrWhiteSpace(userDetails.Menus))
+                    {
+                        var olduserWiseMenus = _context.UserWiseMenus.Where(x => x.UserId == userDetails.UserId).ToList();
 
-						// Remove each fetched entity
-						_context.UserWiseMenus.RemoveRange(olduserWiseMenus);
+                        // Remove each fetched entity
+                        _context.UserWiseMenus.RemoveRange(olduserWiseMenus);
 
-						// Save the changes to the database
-						_context.SaveChanges();
+                        // Save the changes to the database
+                        _context.SaveChanges();
 
-						List<int> availableMenus = userDetails.Menus.Split(',').Select(int.Parse).ToList();
+                        List<int> availableMenus = userDetails.Menus.Split(',').Select(int.Parse).ToList();
                         List<UserWiseMenu> userWiseMenus = new List<UserWiseMenu>();
 
-						foreach (var item in availableMenus)
-						{
+                        foreach (var item in availableMenus)
+                        {
 
-							UserWiseMenu userWiseMenu = new UserWiseMenu();
-							userWiseMenu.UserId = user.UserId;
-							userWiseMenu.MenuId = item;
-							userWiseMenu.CreatedDate = DateTime.Now;
-							userWiseMenu.CreatedBy = "asdf";
-							_context.UserWiseMenus.Add(userWiseMenu);
-							_context.SaveChanges();
-						}
-					}
-					return Constant.UserEditSuccessfull;
+                            UserWiseMenu userWiseMenu = new UserWiseMenu();
+                            userWiseMenu.UserId = user.UserId;
+                            userWiseMenu.MenuId = item;
+                            userWiseMenu.CreatedDate = DateTime.Now;
+                            userWiseMenu.CreatedBy = cuurantAspNetUserId;
+                            _context.UserWiseMenus.Add(userWiseMenu);
+                            _context.SaveChanges();
+                        }
+                    }
+                    return Constant.UserEditSuccessfull;
                 }
                 else
                 {
-                    //add reseller
-                    if (!_context.AspNetUsers.Any(e => e.EmailId == userDetails.Email))
-                    {
+                    //add User
+                    
                         AspNetUser aspuser = new AspNetUser
                         {
                             AspNetUserId = Guid.NewGuid().ToString(),
                             EmailId = userDetails.Email,
                             PassWord = "123456",
-                            CreatedBy = "asdf",
+                            CreatedBy = cuurantAspNetUserId,
                             CreatedDate = DateTime.Now
                         };
                         _context.AspNetUsers.Add(aspuser);
                         _context.SaveChanges();
+
+                        AspNetUserRole aspNetUserRole = new AspNetUserRole
+                        {
+                            AspNetUserId = aspuser.AspNetUserId,
+                            AspNetRoleId = 3
+                        };
+                        _context.AspNetUserRoles.Add(aspNetUserRole);
+                        _context.SaveChanges();
+                        var UserID = _context.Resellers.Where(x => x.AspNetUserId == CV.AspNetUserID()).FirstOrDefault().ResellerId;
                         User user = new User
                         {
                             Email = userDetails.Email,
                             UserName = userDetails.UserName,
                             AspNetUserId = aspuser.AspNetUserId,
-                            ReSellerId = 1,
+                            ReSellerId = UserID,
                             ContactNumber = userDetails.ContactNumber,
-                            CreatedBy = "asdf",
+                            CreatedBy = cuurantAspNetUserId,
                             CreatedDate = DateTime.Now
                         };
                         _context.Users.Add(user);
@@ -129,7 +138,7 @@ namespace DishNetwork.Repository.Repository
                                 userWiseMenu.UserId = user.UserId;
                                 userWiseMenu.MenuId = item;
                                 userWiseMenu.CreatedDate = DateTime.Now;
-                                userWiseMenu.CreatedBy = "asdf";
+                                userWiseMenu.CreatedBy = cuurantAspNetUserId;
                                 _context.UserWiseMenus.Add(userWiseMenu);
                                 _context.SaveChanges();
                             }
@@ -138,11 +147,7 @@ namespace DishNetwork.Repository.Repository
 
 
                         return Constant.UserAdded;
-                    }
-                    else
-                    {
-                        return Constant.UserNotAddedEmailExist;
-                    }
+                    
                 }
             }
             catch (Exception)
@@ -163,7 +168,7 @@ namespace DishNetwork.Repository.Repository
 
         public bool DeleteUser(int userId)
         {
-            User user = _context.Users.First(e=>e.UserId == userId);
+            User user = _context.Users.First(e => e.UserId == userId);
             if (user != null)
             {
                 user.DeletedAt = DateTime.Now;

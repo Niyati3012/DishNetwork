@@ -56,9 +56,6 @@ public partial class AspNetUser
     public virtual ICollection<Device> Devices { get; set; } = new List<Device>();
 
     [InverseProperty("CreatedByNavigation")]
-    public virtual ICollection<FileLog> FileLogs { get; set; } = new List<FileLog>();
-
-    [InverseProperty("CreatedByNavigation")]
     public virtual ICollection<Log> Logs { get; set; } = new List<Log>();
 
     [InverseProperty("AspNetUser")]

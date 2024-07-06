@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DishNetwork.Controllers
 {
-	[AuthManager("User")]
+	[AuthManager("Reseller,User")]
 	public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;

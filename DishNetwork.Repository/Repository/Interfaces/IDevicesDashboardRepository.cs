@@ -9,6 +9,8 @@ namespace DishNetwork.Repository.Repository.Interfaces
 {
     public interface IDevicesDashboardRepository
     {
-        public List<DevicesDetails> GetAllIPs();
+        Task<List<DevicesDetails>> GetAllIPs();
+        //bool FileLog(string FileName, string ip);
+        Task<bool> FileLogDb(string filePath, string ip);
     }
 }

@@ -93,6 +93,7 @@ namespace DishNetwork.Repository.Repository
                         };
                         _context.AspNetUsers.Add(user);
                         _context.SaveChanges();
+
                         Reseller reseller = new Reseller();
                         reseller.EmailId = resellerDetails.EmailId;
                         reseller.Name = resellerDetails.Name;
@@ -105,7 +106,6 @@ namespace DishNetwork.Repository.Repository
                         reseller.State = resellerDetails.State;
                         reseller.CreatedBy = user.AspNetUserId;
                         reseller.CreatedDate = DateTime.Now;
-                        
                         _context.Resellers.Add(reseller);
                         _context.SaveChanges();
 

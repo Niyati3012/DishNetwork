@@ -109,10 +109,6 @@ public partial class ApplicationDbContext : DbContext
 
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.FileLogs)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FileLog_CreatedBy_fkey");
-
             entity.HasOne(d => d.Device).WithMany(p => p.FileLogs)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FileLog_DeviceId_fkey");

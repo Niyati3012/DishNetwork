@@ -1,5 +1,9 @@
-﻿using DishNetwork.Repository.Repository.Interfaces;
+﻿using DishNetwork.Entity.DataContext;
+using DishNetwork.Entity.Models;
+using DishNetwork.Entity.ViewModels;
+using DishNetwork.Repository.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 
 namespace DishNetwork.Controllers
@@ -7,58 +11,85 @@ namespace DishNetwork.Controllers
     public class DevicesDashboardController : Controller
     {
         private readonly IDevicesDashboardRepository _devicesDashboardRepository;
+        private readonly IAdminRepository _adminRepository;
+        private readonly ApplicationDbContext _context;
         private readonly HttpClient _client;
-        public DevicesDashboardController(IDevicesDashboardRepository devicesDashboardRepository)
+        public DevicesDashboardController(IDevicesDashboardRepository devicesDashboardRepository, IAdminRepository adminRepository, ApplicationDbContext context)
         {
             _devicesDashboardRepository = devicesDashboardRepository;
-            var handler = new HttpClientHandler();
-            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-            _client = new HttpClient(handler);
+            
+            _adminRepository = adminRepository;
+            _context = context;
             //_client.BaseAddress = new Uri("https://71.175.62.13:8051/");
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            GetAllFilesAsync();
+          //await  GetAllFilesAsync();
+          
             return View();
         }
 
         public async Task GetAllFilesAsync()
         {
-            var ips = _devicesDashboardRepository.GetAllIPs();
-
-            foreach (var ip in ips)
+            try
             {
-                _client.BaseAddress = new Uri("https://" + ip.Ipaddress + ":" + ip.Port + "/");
-                HttpResponseMessage response = await _client.GetAsync("web/status/dashboard");
-                var datetime = DateTime.Now;
-                var date = datetime.Date;
-                //var time = datetime.ToLocalTime();
-                if (response.IsSuccessStatusCode)
+                var ips = await _devicesDashboardRepository.GetAllIPs();
+
+                foreach (var ip in ips)
                 {
-                    string data = response.Content.ReadAsStringAsync().Result;
-
-                    // Combine the current directory with the relative directory path
-                    string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Upload", ip.Ipaddress, DateTime.Now.ToString("yyyy/MM/dd"));
-                    string fileName = "first_"+ DateTime.Now.ToString("HHmm") + ".txt"; // Define your file name here
-                    string filePath = Path.Combine(directoryPath, fileName);
-
-                    try
+                    using (var handler = new HttpClientHandler())
                     {
-                        // Ensure the directory exists
-                        if (!Directory.Exists(directoryPath))
+                        handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+
+                        using (var client = new HttpClient(handler))
                         {
-                            Directory.CreateDirectory(directoryPath);
+                            client.BaseAddress = new Uri($"https://{ip.Ipaddress}:{ip.Port}/");
+                            HttpResponseMessage response = await client.GetAsync("web/status/dashboard");
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string data = await response.Content.ReadAsStringAsync();
+
+                                string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Upload", ip.Ipaddress, DateTime.Now.ToString("yyyy/MM/dd"));
+                                string fileName = $"first_{DateTime.Now.ToString("HHmm")}.txt";
+                                string filePath = Path.Combine(directoryPath, fileName);
+
+                                if (!Directory.Exists(directoryPath))
+                                {
+                                    Directory.CreateDirectory(directoryPath);
+                                }
+
+                                System.IO.File.WriteAllText(filePath, data);
+                                await _devicesDashboardRepository.FileLogDb(filePath, ip.Ipaddress);
+                            }
+                            else
+                            {
+                                // Customize your data here
+                                bool customData = false;
+                                string data = $"{{ \"data\": {customData.ToString().ToLower()} }}";
+
+
+                                string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Upload", ip.Ipaddress, DateTime.Now.ToString("yyyy/MM/dd"));
+                                string fileName = $"first_{DateTime.Now.ToString("HHmm")}.txt";
+                                string filePath = Path.Combine(directoryPath, fileName);
+
+                                if (!Directory.Exists(directoryPath))
+                                {
+                                    Directory.CreateDirectory(directoryPath);
+                                }
+
+                                System.IO.File.WriteAllText(filePath, data);
+                                await _devicesDashboardRepository.FileLogDb(filePath, ip.Ipaddress);
+
+                            }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-
-                    // Write the data to the file
-                    System.IO.File.WriteAllText(filePath, data);
-
                 }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }
         }
 

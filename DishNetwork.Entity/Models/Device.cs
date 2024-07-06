@@ -90,6 +90,10 @@ public partial class Device
     [Column(TypeName = "timestamp without time zone")]
     public DateTime? DeletedAt { get; set; }
 
+    public decimal? Latitude { get; set; }
+
+    public decimal? Longitude { get; set; }
+
     [ForeignKey("CreatedBy")]
     [InverseProperty("Devices")]
     public virtual AspNetUser CreatedByNavigation { get; set; } = null!;

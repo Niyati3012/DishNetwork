@@ -33,3 +33,4 @@ C:\Users\Niyati\Desktop\Project\DishNetwork.Repository\obj\Debug\net7.0\refint\D
 C:\Users\Niyati\Desktop\Project\DishNetwork.Repository\obj\Debug\net7.0\DishNetwork.Repository.pdb
 C:\Users\Niyati\Desktop\Project\DishNetwork.Repository\obj\Debug\net7.0\DishNetwork.Repository.genruntimeconfig.cache
 C:\Users\Niyati\Desktop\Project\DishNetwork.Repository\obj\Debug\net7.0\ref\DishNetwork.Repository.dll
+C:\Users\Niyati\Desktop\Project\DishNetwork.Repository\obj\Debug\net7.0\DishNetwork.Repository.sourcelink.json

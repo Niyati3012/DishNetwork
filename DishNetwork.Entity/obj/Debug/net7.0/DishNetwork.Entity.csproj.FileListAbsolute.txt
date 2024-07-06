@@ -27,3 +27,4 @@ C:\Users\Niyati\Desktop\Project\DishNetwork.Entity\obj\Debug\net7.0\refint\DishN
 C:\Users\Niyati\Desktop\Project\DishNetwork.Entity\obj\Debug\net7.0\DishNetwork.Entity.pdb
 C:\Users\Niyati\Desktop\Project\DishNetwork.Entity\obj\Debug\net7.0\DishNetwork.Entity.genruntimeconfig.cache
 C:\Users\Niyati\Desktop\Project\DishNetwork.Entity\obj\Debug\net7.0\ref\DishNetwork.Entity.dll
+C:\Users\Niyati\Desktop\Project\DishNetwork.Entity\obj\Debug\net7.0\DishNetwork.Entity.sourcelink.json

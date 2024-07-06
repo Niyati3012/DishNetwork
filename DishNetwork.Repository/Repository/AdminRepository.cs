@@ -95,6 +95,29 @@ namespace DishNetwork.Repository.Repository
             _context.SaveChanges();
             return true;
         }
+        public bool FileLog(string FileName, string ip)
+        {
+            try
+            {
+                Device id = _context.Devices.First(e => e.Ipaddress == ip);
+                if (id != null)
+                {
+                    FileLog fileLog = new FileLog();
+                    fileLog.DeviceId = id.DeviceId;
+                    fileLog.FirstFile = FileName;
+                    fileLog.CreatedBy = "-1";
+                    fileLog.CreatedDate = DateTime.Now;
+                    _context.FileLogs.Add(fileLog);
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
     }
 }

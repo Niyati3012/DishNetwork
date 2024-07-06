@@ -1,4 +1,9 @@
-﻿<!--begin::Header-->
+﻿@using DishNetwork.Repository.Repository.Interfaces
+@inject IDevicesRepository devicesRepository;
+@{
+	var Ip_List = devicesRepository.GetAllDevices();
+}
+<!--begin::Header-->
 					<div id="kt_header" style="" class="header align-items-stretch">
 						<!--begin::Brand-->
 						<div class="header-brand">
@@ -72,9 +77,22 @@
 									<!--end::Breadcrumb-->
 								</div>
 								<!--end::Page title-->
-								
+			<div>
+				@if (Context.Request.Path == "/DevicesDashboard")
+				{
+				<select class="form-select form-select-solid" data-control="select2" data-placeholder="Select an Ip Address">
+					@foreach (var ip in Ip_List)
+					{
+							<option value="@ip.Ipaddress">@ip.PersonName - @ip.Ipaddress : @ip.Port</option>
+						
+					}
+				</select>
+				}
+</div>
+							
 							</div>
 							<!--end::Toolbar-->
 						</div>
+	
 					</div>
-					<!--end::Header-->
+<!--end::Header-->

@@ -13,12 +13,10 @@
     {
         var userId = userRepository.GetUserByAspNetId(CV.AspNetUserID());
         Staticmenu = loginRepository.SetMenuForUser((int)userId.UserId);
-
     }
     else
     {
         Staticmenu = loginRepository.SetMenu(roleid);
-        
     }
 }
 <!--begin::Aside-->

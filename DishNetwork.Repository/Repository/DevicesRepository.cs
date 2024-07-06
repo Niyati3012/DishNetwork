@@ -124,5 +124,10 @@ namespace DishNetwork.Repository.Repository
             }
             return Constant.DeviceDeleteUnSuccessfull;
         }
+
+  
+
+
+
     }
 }

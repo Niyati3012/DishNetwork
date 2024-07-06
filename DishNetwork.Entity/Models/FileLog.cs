@@ -44,10 +44,6 @@ public partial class FileLog
     [Column(TypeName = "timestamp without time zone")]
     public DateTime? ModifiedDate { get; set; }
 
-    [ForeignKey("CreatedBy")]
-    [InverseProperty("FileLogs")]
-    public virtual AspNetUser CreatedByNavigation { get; set; } = null!;
-
     [ForeignKey("DeviceId")]
     [InverseProperty("FileLogs")]
     public virtual Device Device { get; set; } = null!;
