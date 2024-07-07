@@ -111,12 +111,14 @@
                 <div class="modal-body">
                     <div class="row" asp-controller="User" asp-action="UserAddEdit">
                         <div class="col-md-12 mb-2">
-                            <input id="UserId" asp-for="UserId" />
+                            <input id="UserId" asp-for="UserId"  hidden/>
                             <label for="exampleFormControlInput1"
                                    class="required form-label">Name</label>
                             <input type="text" asp-for="UserName" id="UserName"
                                    class="form-control form-control-solid"
                                    placeholder="Enter Name here..." />
+                            <span asp-validation-for="UserName" id="adminEmailError" class="text-danger small"></span>
+
                         </div>
                         <div class="col-md-6 mb-2">
                             <label for="exampleFormControlInput1"
@@ -124,6 +126,8 @@
                             <input type="text" asp-for="Email" id="UserEmail"
                                    class="form-control form-control-solid"
                                    placeholder="Enter Email here..." />
+                            <span asp-validation-for="Email" id="adminEmailError" class="text-danger small"></span>
+
                         </div>
                         <div class="col-md-6 mb-2">
                             <label for="exampleFormControlInput1"
@@ -131,9 +135,11 @@
                             <input type="text" asp-for="ContactNumber" id="contactNo"
                                    class="form-control form-control-solid"
                                    placeholder="Enter Number here..." />
+                            <span asp-validation-for="ContactNumber" id="adminEmailError" class="text-danger small"></span>
+
                         </div>
                         <div class="col-md-12 mb-2">
-                            <input hidden id="Menus" asp-for="Menus" />
+                            
                             <div class="row">
                                 @foreach (var item in Menus)
                                 {
@@ -150,12 +156,13 @@
                                         </div>
                                     </div>
                                 }
-
                             </div>
+                            <span asp-validation-for="Menus" id="MenusError" class="text-danger small"></span>
+                            <input id="Menus" asp-for="Menus" style="visibility:hidden"/>
+
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button type="button"
                             class="btn btn-light"
@@ -184,11 +191,16 @@
                     return $(this).val();
                 }).get().join(',');
                 $('#Menus').val(Menus);
+                document.getElementById('MenusError').innerHTML = '';
+
                 console.log(Menus);
             });
 
             if (document.getElementById('UserAddEditModal')) {
                 document.getElementById('UserAddEditModal').addEventListener('show.bs.modal', event => {
+                    document.querySelectorAll('.form-check-input.checkbox').forEach(function (checkbox) {
+                        checkbox.checked = false;
+                    });
                     const button = event.relatedTarget
                     const UserId = button.getAttribute('data-bs-UserId')
                     const Name = button.getAttribute('data-bs-Name')

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DishNetwork.Controllers
 {
+    [AuthManager("Reseller,User")]
     public class DevicesController : Controller
     {
         private readonly IDevicesRepository _devicesRepository;

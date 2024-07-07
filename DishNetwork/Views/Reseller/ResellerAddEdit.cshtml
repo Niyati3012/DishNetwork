@@ -26,6 +26,8 @@
                                     <input type="text" asp-for="Name"
                                            class="form-control form-control-solid"
                                            placeholder="Enter Name here..." />
+                                    <span asp-validation-for="Name" class="text-danger small"></span>
+
                                 </div>
                                 @if (Model != null)
                                 {
@@ -35,6 +37,8 @@
                                         <input type="text" asp-for="EmailId" readonly
                                                class="form-control form-control-solid"
                                                placeholder="Enter Email here..." />
+                                        <span asp-validation-for="EmailId" class="text-danger small"></span>
+
                                     </div>
                                 }
                                 else
@@ -45,6 +49,8 @@
                                         <input type="text" asp-for="EmailId"
                                                class="form-control form-control-solid"
                                                placeholder="Enter Email here..." />
+                                        <span asp-validation-for="EmailId" class="text-danger small"></span>
+
                                     </div>
                                 }
 
@@ -54,6 +60,8 @@
                                     <input type="text" asp-for="ContactNumber"
                                            class="form-control form-control-solid"
                                            placeholder="Enter Contact Number here..." />
+                                    <span asp-validation-for="ContactNumber" class="text-danger small"></span>
+
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <label for="exampleFormControlInput1"
@@ -61,6 +69,8 @@
                                     <input type="file" asp-for="Logoimage"
                                            class="form-control form-control-solid"
                                            placeholder="Enter Logo here..." />
+                                    <span asp-validation-for="Logoimage" class="text-danger small"></span>
+
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <label for="exampleFormControlInput1"
@@ -68,6 +78,8 @@
                                     <input type="text" asp-for="Address1"
                                            class="form-control form-control-solid"
                                            placeholder="Enter Address 1 here..." />
+                                    <span asp-validation-for="Address1" class="text-danger small"></span>
+
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <label for="exampleFormControlInput1"
@@ -75,6 +87,8 @@
                                     <input type="text" asp-for="Address2"
                                            class="form-control form-control-solid"
                                            placeholder="Enter Address 2 here..." />
+                                    <span asp-validation-for="Address2" class="text-danger small"></span>
+
                                 </div>
                                 <div class="col-md-4 mb-2">
                                     <label for="exampleFormControlInput1"
@@ -82,6 +96,8 @@
                                     <input type="text" asp-for="ZipCode"
                                            class="form-control form-control-solid"
                                            placeholder="Enter Zipcode here..." />
+                                    <span asp-validation-for="ZipCode" class="text-danger small"></span>
+
                                 </div>
                                 <div class="col-md-4 mb-2">
                                     <label for="exampleFormControlInput1"
@@ -89,6 +105,8 @@
                                     <input type="text" asp-for="City"
                                            class="form-control form-control-solid"
                                            placeholder="Enter City here..." />
+                                    <span asp-validation-for="City" class="text-danger small"></span>
+
                                 </div>
                                 <div class="col-md-4 mb-2">
                                     <label for="exampleFormControlInput1"
@@ -96,6 +114,8 @@
                                     <input type="text" asp-for="State"
                                            class="form-control form-control-solid"
                                            placeholder="Enter State here..." />
+                                    <span asp-validation-for="State" class="text-danger small"></span>
+
                                 </div>
                                 <div class="col-md-12 text-end my-10 pe-40">
                                     <button type="submit" class="btn btn-primary">Add Account</button>

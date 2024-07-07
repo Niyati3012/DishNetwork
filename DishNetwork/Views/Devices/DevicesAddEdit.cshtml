@@ -22,18 +22,23 @@
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">IP Address</label>
                                 <input type="text" asp-for="Ipaddress" class="form-control form-control-solid" placeholder="Enter IP Address here..." />
+                                <span asp-validation-for="Ipaddress" class="text-danger small"></span>
                             </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">Port</label>
                                 <input type="text" asp-for="Port" class="form-control form-control-solid" placeholder="Enter Port here..." />
+                                <span asp-validation-for="Port" class="text-danger small"></span>
                             </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">Contact Person Name</label>
                                 <input type="text" asp-for="PersonName" class="form-control form-control-solid" placeholder="Enter Contact Person Name here..." />
+                                <span asp-validation-for="PersonName" class="text-danger small"></span>
+
                             </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">Property Name</label>
                                 <input type="text" asp-for="PropertyName" class="form-control form-control-solid" placeholder="Enter Property Name here..." />
+                                <span asp-validation-for="PropertyName" class="text-danger small"></span>
                             </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="form-label">Number of Rooms</label>
@@ -59,11 +64,12 @@
                                     <label class="form-check-label" for="flexRadioDefault">
                                         yes
                                     </label>
-                                    <input class="form-check-input ms-3" asp-for="MaintainanceContract" type="radio" name="MaintainanceContract" value="false" id="flexRadioDefaultno" />
+                                    <input class="form-check-input ms-3" checked asp-for="MaintainanceContract" type="radio" name="MaintainanceContract" value="false" id="flexRadioDefaultno" />
                                     <label class="form-check-label" for="flexRadioDefault">
                                         no
                                     </label>
                                 </div>
+                                <span asp-validation-for="MaintainanceContract" class="text-danger small"></span>
 
                             </div>
                             <div class="col-md-12">
@@ -72,7 +78,10 @@
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">Address</label>
                                 <input type="text" class="form-control form-control-solid" asp-for="Address" placeholder="Enter Address here..." />
-                            </div>
+                                <span asp-validation-for="Address" class="text-danger small"></span>
+
+                            
+                           </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">State</label>
                                 <select class="form-select form-select-solid" asp-for="State" aria-label="Select example">
@@ -81,6 +90,8 @@
                                     <option value="2">Elite</option>
                                     <option value="3">BuyOut</option>
                                 </select>
+                                <span asp-validation-for="State" class="text-danger small"></span>
+
                             </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">City</label>
@@ -90,22 +101,32 @@
                                     <option value="2">Elite</option>
                                     <option value="3">BuyOut</option>
                                 </select>
+                                <span asp-validation-for="City" class="text-danger small"></span>
+
                             </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">ZipCode</label>
                                 <input type="text" asp-for="ZipCode" class="form-control form-control-solid" placeholder="Enter ZipCode here..." />
+                                <span asp-validation-for="ZipCode" class="text-danger small"></span>
+
                             </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">GoogleMap Location Link</label>
                                 <input type="text" asp-for="GoogleMap" class="form-control form-control-solid" placeholder="Enter Link here..." />
+                                <span asp-validation-for="GoogleMap" class="text-danger small"></span>
+
                             </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">Email</label>
                                 <input type="text" asp-for="EmailId" class="form-control form-control-solid" placeholder="Enter Email here..." />
+                                <span asp-validation-for="EmailId" class="text-danger small"></span>
+
                             </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">Contact Number</label>
                                 <input type="text" asp-for="ContactNo" class="form-control form-control-solid" placeholder="Enter contact number here..." />
+                                <span asp-validation-for="ContactNo" class="text-danger small"></span>
+
                             </div>
                             <div class="col-md-12">
                                 <h1 class="my-5">VPN Details</h1>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 //using Microsoft.AspNetCore.Http;
 
 
@@ -17,24 +18,24 @@ namespace DishNetwork.Entity.ViewModels
         public int ResellerId { get; set; }
 
         public string AspNetUserId { get; set; }
-
+        [Required(ErrorMessage = "Name is requierd")]
         public string Name { get; set; }
-
-        public string EmailId { get; set; }
-
-        public string? ContactNumber { get; set; }
-
-        public string? State { get; set; }
-
-        public string? City { get; set; }
-
-        public string? Address1 { get; set; }
-
-        public string? Address2 { get; set; }
-
-        public string? ZipCode { get; set; }
-
-        public string? Logo { get; set; }
+		[Required(ErrorMessage = "EmailId is requierd")]
+		public string EmailId { get; set; }
+		[Required(ErrorMessage = "Contact Number is requierd")]
+		public string? ContactNumber { get; set; }
+		[Required(ErrorMessage = "State is requierd")]
+		public string? State { get; set; }
+		[Required(ErrorMessage = "City is requierd")]
+		public string? City { get; set; }
+		[Required(ErrorMessage = "Address1 is requierd")]
+		public string? Address1 { get; set; }
+		[Required(ErrorMessage = "Address2 is requierd")]
+		public string? Address2 { get; set; }
+		[Required(ErrorMessage = "ZipCode is requierd")]
+		public string? ZipCode { get; set; }
+		[Required(ErrorMessage = "Logo is requierd")]
+		public string? Logo { get; set; }
         public IFormFile Logoimage {  get; set; } 
 
         public string CreatedBy { get; set; } 

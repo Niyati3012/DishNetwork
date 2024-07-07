@@ -15,7 +15,6 @@ namespace DishNetwork.Controllers
         }
         public IActionResult Index()
         {
-
             ResellerDetails details = new ResellerDetails();
             details.Resellers = _resellerRepository.GetAllReseller();
             return View(details);

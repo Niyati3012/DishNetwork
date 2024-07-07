@@ -24,7 +24,6 @@
                                     Add Admin
                                 </button>
                             </div>
-                            
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table mb-0">
@@ -38,7 +37,6 @@
                                         </thead>
                                         <tbody>
                                             @{
-
                                                 int i = 0;
                                             }
                                             @foreach (var item in Model.adminlist)
@@ -58,7 +56,6 @@
                                                     </td>
                                                 </tr>
                                             }
-                                         
                                         </tbody>
                                     </table>
                                 </div>
@@ -66,7 +63,6 @@
                         </div>
                         <!--end::Body-->
                     </div>
-
                     <!--end::Statistics Widget 5-->
                 </div>
             </div>
@@ -77,12 +73,11 @@
     <!--end::Post-->
 </div>
 
-
 <div class="modal fade" tabindex="-1" id="AddAdmin">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Add User</h3>
+                <h3 class="modal-title">Add Admin</h3>
 
                 <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
@@ -94,7 +89,6 @@
                 </div>
                 <!--end::Close-->
             </div>
-
             <form class="row" asp-action="AdminAddEdit" asp-controller="Admin">
                 <div class="modal-body">
                     <div class="col-md-12 mb-2">
@@ -104,6 +98,7 @@
                         <input type="text" asp-for="Name" id="adminName"
                                class="form-control form-control-solid"
                                placeholder="Enter Name here..." />
+                        <span asp-validation-for="Name" id="adminNameError" class="text-danger small"></span>
                     </div>
                     <div class="col-md-12 mb-2">
                         <label for="exampleFormControlInput1"
@@ -111,6 +106,7 @@
                         <input type="text" asp-for="EmailId" id="adminEmail"
                                class="form-control form-control-solid"
                                placeholder="Enter Email here..." />
+                        <span asp-validation-for="EmailId" id="adminEmailError" class="text-danger small"></span>
                     </div>
                 </div>
 
@@ -129,8 +125,6 @@
     </div>
 </div>
 
-
-
 @section Scripts {
     <script>
         if (document.getElementById('AddAdmin')) {
@@ -143,10 +137,15 @@
                 document.getElementById('AdminId').value = AdminId;
                 document.getElementById('adminName').value = Name;
                 document.getElementById('adminEmail').value = Email;
-                document.getElementById('adminEmail').disabled = true;
-            })
+                if (AdminId != null) {
+                    document.getElementById('adminEmail').disabled = true;
+                }
+            });
         }
-
+        document.getElementById('AddAdmin').addEventListener('hide.bs.modal', event => {
+            document.getElementById('adminNameError').innerHTML = '';
+            document.getElementById('adminEmailError').innerHTML = '';
+        })
         
     </script>
 }

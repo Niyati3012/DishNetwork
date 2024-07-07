@@ -8,6 +8,7 @@ using System.IO;
 
 namespace DishNetwork.Controllers
 {
+    [AuthManager("Reseller,User")]
     public class DevicesDashboardController : Controller
     {
         private readonly IDevicesDashboardRepository _devicesDashboardRepository;
