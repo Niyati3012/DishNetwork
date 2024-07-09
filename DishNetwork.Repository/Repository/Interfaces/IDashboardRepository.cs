@@ -1,4 +1,5 @@
-﻿using DishNetwork.Entity.ViewModels;
+﻿using DishNetwork.Entity.Models;
+using DishNetwork.Entity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace DishNetwork.Repository.Repository.Interfaces
 	public interface IDashboardRepository
 	{
 		public List<DeviceLocationDetails> DeviceLocationDetails();
-	}
+		public FileLog FileLog(int id);
+
+    }
 }

@@ -81,9 +81,40 @@ namespace DishNetwork.Controllers
 				}
 			}
 		}
-		public IActionResult GetLocations()
+		public async Task<IActionResult> GetLocations()
         {
-            return  Json(_dashboardRepository.DeviceLocationDetails());
+			var allip = _dashboardRepository.DeviceLocationDetails();
+            foreach (var item in allip)
+            {
+				item.IsError = await ReadDeviceStatusAsync(item.DeviceId);
+            }
+            return  Json(allip);
+        }
+		public async Task<bool> ReadDeviceStatusAsync(int id)
+		{
+			try
+			{
+			
+			var file = 	_dashboardRepository.FileLog(id);
+				if(file != null)
+				{
+                    string jsonString = await System.IO.File.ReadAllTextAsync(file.FirstFile);
+                    JsonDocument doc = JsonDocument.Parse(jsonString);
+                    JsonElement root = doc.RootElement;
+
+                    string dataPorts = root.GetProperty("data").ToString();
+                    if (dataPorts != "false")
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+				return false;
+            
+            }catch (Exception ex)
+			{
+				return false;
+			}
         }
     }
 }

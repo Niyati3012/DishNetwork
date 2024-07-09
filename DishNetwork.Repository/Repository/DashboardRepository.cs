@@ -1,4 +1,5 @@
 ﻿using DishNetwork.Entity.DataContext;
+using DishNetwork.Entity.Models;
 using DishNetwork.Entity.ViewModels;
 using DishNetwork.Repository.Repository.Interfaces;
 using System;
@@ -29,9 +30,18 @@ namespace DishNetwork.Repository.Repository
 						   IPAddress = device.Ipaddress,
 						   Latitude = device.Latitude,
 						   Longitude = device.Longitude,
+						   IsError = true,
 					   }).ToList();
 
 			return details;
+		}
+
+		public FileLog FileLog(int id)
+		{
+			FileLog fileLog = new FileLog();
+			fileLog = _context.FileLogs.Where(e=>e.DeviceId == id).OrderByDescending(e=>e.CreatedDate).FirstOrDefault();
+
+			return fileLog;
 		}
 	}
 }

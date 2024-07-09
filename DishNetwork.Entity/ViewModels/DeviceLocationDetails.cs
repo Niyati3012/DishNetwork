@@ -12,6 +12,7 @@ namespace DishNetwork.Entity.ViewModels
 		public string IPAddress { get; set; }
 		public decimal? Latitude { get; set; }
 		public decimal? Longitude { get; set;}
+		public bool IsError { get; set; }
 
 	}
 }
