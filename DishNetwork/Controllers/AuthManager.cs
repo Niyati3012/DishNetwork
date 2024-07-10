@@ -82,7 +82,7 @@ namespace DishNetwork.Controllers
             {
                 context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { Controller = "Login", action = "AccessDenied" }));
 
-            }
+            } 
 
         }
 
