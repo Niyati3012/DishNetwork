@@ -47,10 +47,8 @@
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="form-label">Equipment Type</label>
                                 <select class="form-select form-select-solid" asp-for="Equipment" aria-label="Select example">
-                                    <option>Open this select menu</option>
-                                    <option value="1">Lease</option>
-                                    <option value="2">Elite</option>
-                                    <option value="3">BuyOut</option>
+                                    <option value="Lease">Lease</option>
+                                    <option value="Purchased">Purchased</option>
                                 </select>
                             </div>
                             <div class="col-md-6 mb-10">
@@ -79,8 +77,6 @@
                                 <label for="exampleFormControlInput1" class="required form-label">Address</label>
                                 <input type="text" class="form-control form-control-solid" asp-for="Address" placeholder="Enter Address here..." />
                                 <span asp-validation-for="Address" class="text-danger small"></span>
-
-                            
                            </div>
                             <div class="col-md-6 mb-10">
                                 <label for="exampleFormControlInput1" class="required form-label">State</label>

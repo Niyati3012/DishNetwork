@@ -13,6 +13,11 @@ namespace DishNetwork.Entity.ViewModels
 		public decimal? Latitude { get; set; }
 		public decimal? Longitude { get; set;}
 		public bool IsError { get; set; }
+		public string PropertyName { get; set; }
+		public string PersonName { get; set; }
+		public string Address { get; set; }
+		public string City { get; set; }
+		public string State { get; set; }
 
 	}
 }

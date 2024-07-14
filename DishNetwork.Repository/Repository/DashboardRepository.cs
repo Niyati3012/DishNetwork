@@ -26,6 +26,12 @@ namespace DishNetwork.Repository.Repository
 						   Latitude = device.Latitude,
 						   Longitude = device.Longitude,
 						   //IsError = true,
+						   PropertyName = device.PropertyName,
+						   PersonName = device.PersonName,
+						   Address = device.Address,
+						   City = device.City,
+						   State = device.State,
+
 					   }).ToList();
 
 			return details;
