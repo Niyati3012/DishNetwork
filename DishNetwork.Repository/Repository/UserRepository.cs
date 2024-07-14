@@ -2,11 +2,6 @@
 using DishNetwork.Entity.Models;
 using DishNetwork.Entity.ViewModels;
 using DishNetwork.Repository.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DishNetwork.Repository.Repository
 {
@@ -22,7 +17,6 @@ namespace DishNetwork.Repository.Repository
         public List<UserDetails> GetAllUsers()
         {
             List<UserDetails> users = new List<UserDetails>();
-            //users = _context.Users.Where(e => !e.DeletedAt.HasValue).ToList();
             users = (from user in _context.Users
                      where !user.DeletedAt.HasValue
                      select new UserDetails
@@ -43,11 +37,6 @@ namespace DishNetwork.Repository.Repository
                                      ,
                      }).ToList();
 
-            //foreach (var item in users)
-            //{
-            //  List<int> j =   _context.UserWiseMenus.Where(x => x.UserId == item.UserId).Select(x =>x.MenuId).ToList();
-            //    item.Menus = j.
-            //}
 
             return users;
         }
@@ -96,7 +85,9 @@ namespace DishNetwork.Repository.Repository
                 else
                 {
                     //add User
-                    
+                    if (!_context.AspNetUsers.Any(e => e.EmailId == userDetails.Email))
+                    {
+
                         AspNetUser aspuser = new AspNetUser
                         {
                             AspNetUserId = Guid.NewGuid().ToString(),
@@ -115,6 +106,7 @@ namespace DishNetwork.Repository.Repository
                         };
                         _context.AspNetUserRoles.Add(aspNetUserRole);
                         _context.SaveChanges();
+
                         var UserID = _context.Resellers.Where(x => x.AspNetUserId == CV.AspNetUserID()).FirstOrDefault().ResellerId;
                         User user = new User
                         {
@@ -143,11 +135,12 @@ namespace DishNetwork.Repository.Repository
                                 _context.SaveChanges();
                             }
                         }
-
-
-
                         return Constant.UserAdded;
-                    
+                    }
+                    else
+                    {
+                        return Constant.UserNotAddedEmailExist;
+                    }
                 }
             }
             catch (Exception)

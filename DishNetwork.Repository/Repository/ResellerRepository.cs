@@ -32,7 +32,6 @@ namespace DishNetwork.Repository.Repository
                     Directory.CreateDirectory(path);
                 }
 
-
                 if (model.Logoimage != null)
                 {
                     string newfilename = $"{"Logo"}.{Path.GetExtension(model.Logoimage.FileName).Trim('.')}";
@@ -42,7 +41,7 @@ namespace DishNetwork.Repository.Repository
                     {
                         model.Logoimage.CopyTo(stream);
                     }
-                    Reseller reseller = _context.Resellers.FirstOrDefault(e => e.ResellerId == ResellerId);
+                    Reseller? reseller = _context.Resellers.FirstOrDefault(e => e.ResellerId == ResellerId);
                     if (reseller != null)
                     {
                         reseller.Logo = model.Logo;
@@ -56,10 +55,11 @@ namespace DishNetwork.Repository.Repository
             return false;
         }
 
-        public string ResellerAddEdit(ResellerDetails resellerDetails)
+        public string ResellerAddEdit(ResellerDetails resellerDetails )
         {
             try
             {
+                string? loginUser = CV.AspNetUserID();
                 if (resellerDetails.ResellerId != default)
                 {
                     //edit reseller
@@ -72,7 +72,7 @@ namespace DishNetwork.Repository.Repository
                     reseller.City = resellerDetails.City;
                     reseller.State = resellerDetails.State;
                     reseller.ModifiedDate = DateTime.Now;
-                    reseller.ModifiedBy = "asdf";
+                    reseller.ModifiedBy = loginUser;
                     _context.Resellers.Update(reseller);
                     _context.SaveChanges();
                     UploadLogo(resellerDetails, reseller.ResellerId);
@@ -88,25 +88,35 @@ namespace DishNetwork.Repository.Repository
                             AspNetUserId = Guid.NewGuid().ToString(),
                             EmailId = resellerDetails.EmailId,
                             PassWord = "123456",
-                            CreatedBy = "asdf",
+                            CreatedBy = loginUser,
                             CreatedDate = DateTime.Now
                         };
                         _context.AspNetUsers.Add(user);
                         _context.SaveChanges();
 
-                        Reseller reseller = new Reseller();
-                        reseller.EmailId = resellerDetails.EmailId;
-                        reseller.Name = resellerDetails.Name;
-                        reseller.AspNetUserId = user.AspNetUserId;
-                        reseller.ContactNumber = resellerDetails.ContactNumber;
-                        reseller.Address1 = resellerDetails.Address1;
-                        reseller.Address2 = resellerDetails.Address2;
-                        reseller.ZipCode = resellerDetails.ZipCode;
-                        reseller.City = resellerDetails.City;
-                        reseller.State = resellerDetails.State;
-                        reseller.CreatedBy = user.AspNetUserId;
-                        reseller.CreatedDate = DateTime.Now;
+                        Reseller reseller = new Reseller
+                        {
+                            EmailId = resellerDetails.EmailId,
+                            Name = resellerDetails.Name,
+                            AspNetUserId = user.AspNetUserId,
+                            ContactNumber = resellerDetails.ContactNumber,
+                            Address1 = resellerDetails.Address1,
+                            Address2 = resellerDetails.Address2,
+                            ZipCode = resellerDetails.ZipCode,
+                            City = resellerDetails.City,
+                            State = resellerDetails.State,
+                            CreatedBy = loginUser,
+                            CreatedDate = DateTime.Now
+                        };
                         _context.Resellers.Add(reseller);
+                        _context.SaveChanges();
+
+                        AspNetUserRole aspNetUserRole = new AspNetUserRole
+                        {
+                            AspNetUserId = user.AspNetUserId,
+                            AspNetRoleId = 2
+                        };
+                        _context.AspNetUserRoles.Add(aspNetUserRole);
                         _context.SaveChanges();
 
                         UploadLogo(resellerDetails, reseller.ResellerId);
@@ -158,12 +168,14 @@ namespace DishNetwork.Repository.Repository
 
         public String DeleteReseller(int resellerId)
         {
+            string loginUser = CV.AspNetUserID();
+
             Reseller reseller = _context.Resellers.First(e=>e.ResellerId==resellerId);
             if (reseller != null)
             {
                 reseller.DeletedAt = DateTime.Now;
                 reseller.ModifiedDate = DateTime.Now;
-                reseller.ModifiedBy = "asdf";
+                reseller.ModifiedBy = loginUser;
                 _context.Resellers.Update(reseller);
                 _context.SaveChanges();
 

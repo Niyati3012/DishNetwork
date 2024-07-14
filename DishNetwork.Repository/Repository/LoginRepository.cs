@@ -23,6 +23,7 @@ namespace DishNetwork.Repository.Repository
         {
             if(_context.AspNetUsers.Any(e => e.EmailId == model.Email && e.PassWord == model.Password))
             {
+                var aspnetuser = _context.AspNetUsers.First(e => e.EmailId == model.Email);
                 model.AspNetUserId = _context.AspNetUsers.First(e=>e.EmailId == model.Email).AspNetUserId;
                 model.Role = _context.AspNetUserRoles.First(e => e.AspNetUserId == model.AspNetUserId).AspNetRoleId;
                 model.RoleName = _context.AspNetRoles.First(e => e.AspNetRoleId == model.Role).RoleName;
@@ -37,8 +38,6 @@ namespace DishNetwork.Repository.Repository
 			userInfo.AspNetUserId = _context.AspNetUsers.First(e => e.EmailId == Email).AspNetUserId;
 			userInfo.Role = _context.AspNetUserRoles.First(e => e.AspNetUserId == userInfo.AspNetUserId).AspNetRoleId;
 			userInfo.RoleName = _context.AspNetRoles.First(e => e.AspNetRoleId == userInfo.Role).RoleName;
-
-
 			return userInfo;
 		}
 		#region For_Dynamic_Menu
@@ -48,12 +47,12 @@ namespace DishNetwork.Repository.Repository
 		/// </summary>
 		public class MenuItem
 		{
-			public string DbName { get; set; }
-			public string Label { get; set; }
-			public string Url { get; set; }
-			public string RoleName { get; set; }
-			public string ContollerAction { get; set; }
-			public List<string> UrlList { get; set; }
+			public string? DbName { get; set; }
+			public string?   Label { get; set; }
+			public string? Url { get; set; }
+			public string? RoleName { get; set; }
+			public string?   ContollerAction { get; set; }
+			public List<string>? UrlList { get; set; }
 		}
 
 		/// <summary>
@@ -122,7 +121,7 @@ namespace DishNetwork.Repository.Repository
 		/// 
 		public List<MenuItem> SetMenu(int? roleid)
 		{
-			List<Menu> MenuItems = null;
+			List<Menu> MenuItems = new List<Menu>();
 			List<MenuItem> Staticmenu = new List<MenuItem>();
 			
 			if (roleid != null)
@@ -139,28 +138,25 @@ namespace DishNetwork.Repository.Repository
 				//Set By DataBase And Static Menu
 				foreach (Menu menu in MenuItems)
 				{
-					MenuItem m = new MenuItem();
+					MenuItem? m = new MenuItem();
 					m = staticmenu.Where(item => item.DbName == menu.MenuName).FirstOrDefault();
 
 					if (m != null)
 					{
-				
 						Staticmenu.Add(m);
 					}
-
 				}
 			}
 			else
 			{
 				return Staticmenu;
 			}
-
 			return Staticmenu;
 		}
 
         public List<MenuItem> SetMenuForUser(int? userId)
         {
-            List<Menu> MenuItems = null;
+            List<Menu> MenuItems = new List<Menu>();
             List<MenuItem> Staticmenu = new List<MenuItem>();
 
             if (userId != null)
@@ -177,22 +173,19 @@ namespace DishNetwork.Repository.Repository
                 //Set By DataBase And Static Menu
                 foreach (Menu menu in MenuItems)
                 {
-                    MenuItem m = new MenuItem();
+                    MenuItem? m = new MenuItem();
                     m = staticmenu.Where(item => item.DbName == menu.MenuName).FirstOrDefault();
 
                     if (m != null)
                     {
-
                         Staticmenu.Add(m);
                     }
-
                 }
             }
             else
             {
                 return Staticmenu;
             }
-
             return Staticmenu;
         }
 

@@ -1,0 +1,619 @@
+{
+    "data": {
+        "time": {
+            "date": "07/13/24",
+            "time": "05:25 UTC",
+            "uptime": "339 d, 10 h, 52 m "
+        },
+        "dataPorts": [
+            {
+                "id": 0,
+                "role": "Control",
+                "ip": "10.0.4.100",
+                "mac": "00:13:ca:b5:10:9b",
+                "status": {
+                    "color": "Warning",
+                    "message": "Warning"
+                }
+            },
+            {
+                "id": 1,
+                "role": "Content",
+                "ip": "10.100.201.10",
+                "mac": "00:13:ca:b5:10:9c",
+                "status": {
+                    "color": "Disabled",
+                    "message": "Disabled"
+                }
+            },
+            {
+                "id": 2,
+                "role": "Content",
+                "ip": "10.100.202.10",
+                "mac": "00:13:ca:b5:10:9d",
+                "status": {
+                    "color": "Disabled",
+                    "message": "Disabled"
+                }
+            },
+            {
+                "id": 3,
+                "role": "Content",
+                "ip": "10.100.203.10",
+                "mac": "00:13:ca:b5:10:9e",
+                "status": {
+                    "color": "Disabled",
+                    "message": "Disabled"
+                }
+            }
+        ],
+        "software": {
+            "version": "2.7.6"
+        },
+        "services": {
+            "active": 55,
+            "errored": 0
+        },
+        "transponders": {
+            "active": 0,
+            "errored": 0
+        },
+        "caPools": [
+            {
+                "poolId": 0,
+                "name": "ProCAMs",
+                "cams": [
+                    {
+                        "slotId": 0,
+                        "camIndex": 0,
+                        "status": {
+                            "color": "OK",
+                            "message": "Authorized"
+                        }
+                    },
+                    {
+                        "slotId": 0,
+                        "camIndex": 1,
+                        "status": {
+                            "color": "OK",
+                            "message": "Authorized"
+                        }
+                    },
+                    {
+                        "slotId": 5,
+                        "camIndex": 0,
+                        "status": {
+                            "color": "OK",
+                            "message": "Authorized"
+                        }
+                    },
+                    {
+                        "slotId": 5,
+                        "camIndex": 1,
+                        "status": {
+                            "color": "OK",
+                            "message": "Authorized"
+                        }
+                    },
+                    {
+                        "slotId": 5,
+                        "camIndex": 2,
+                        "status": {
+                            "color": "OK",
+                            "message": "Authorized"
+                        }
+                    },
+                    {
+                        "slotId": 5,
+                        "camIndex": 3,
+                        "status": {
+                            "color": "OK",
+                            "message": "Authorized"
+                        }
+                    }
+                ]
+            }
+        ],
+        "authorization": {
+            "numSelectedCams": 6,
+            "numAuthorizedServices": 274,
+            "authorizedFeatures": [
+                "DRM Pro:Idiom",
+                "Output QAM"
+            ]
+        },
+        "inputs": {
+            "satellite": {
+                "rfInputs": [
+                    {
+                        "rfInputId": 0,
+                        "status": {
+                            "color": "OK",
+                            "message": "Good"
+                        },
+                        "signalStrengthDbm": -29,
+                        "satelliteName": "61.5W",
+                        "services": {
+                            "found": 621,
+                            "active": 0,
+                            "errored": 0
+                        },
+                        "scan": {
+                            "progressPercent": {
+                                "initialized": false
+                            },
+                            "lastScanned": {
+                                "initialized": true,
+                                "value": "2023-05-10T18:45:30-04:00"
+                            }
+                        }
+                    },
+                    {
+                        "rfInputId": 1,
+                        "status": {
+                            "color": "OK",
+                            "message": "Good"
+                        },
+                        "signalStrengthDbm": -30,
+                        "satelliteName": "72.0W",
+                        "services": {
+                            "found": 722,
+                            "active": 0,
+                            "errored": 0
+                        },
+                        "scan": {
+                            "progressPercent": {
+                                "initialized": false
+                            },
+                            "lastScanned": {
+                                "initialized": true,
+                                "value": "2023-05-10T18:45:30-04:00"
+                            }
+                        }
+                    },
+                    {
+                        "rfInputId": 2,
+                        "status": {
+                            "color": "Disabled",
+                            "message": "Disabled"
+                        },
+                        "signalStrengthDbm": -50,
+                        "satelliteName": "",
+                        "services": {
+                            "found": 0,
+                            "active": 0,
+                            "errored": 0
+                        },
+                        "scan": {
+                            "progressPercent": {
+                                "initialized": false
+                            },
+                            "lastScanned": {
+                                "initialized": false
+                            }
+                        }
+                    },
+                    {
+                        "rfInputId": 3,
+                        "status": {
+                            "color": "Disabled",
+                            "message": "Disabled"
+                        },
+                        "signalStrengthDbm": -50,
+                        "satelliteName": "",
+                        "services": {
+                            "found": 0,
+                            "active": 0,
+                            "errored": 0
+                        },
+                        "scan": {
+                            "progressPercent": {
+                                "initialized": false
+                            },
+                            "lastScanned": {
+                                "initialized": false
+                            }
+                        }
+                    }
+                ],
+                "blades": [
+                    {
+                        "slotId": 0,
+                        "tuners": [
+                            {
+                                "tunerId": 0,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 1,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 2,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 3,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 4,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 5,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 6,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 7,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 8,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 9,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 10,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 11,
+                                "status": {
+                                    "color": "OK",
+                                    "message": "Good"
+                                }
+                            },
+                            {
+                                "tunerId": 12,
+                                "status": {
+                                    "color": "Disabled",
+                                    "message": "Not Configured"
+                                }
+                            },
+                            {
+                                "tunerId": 13,
+                                "status": {
+                                    "color": "Disabled",
+                                    "message": "Not Configured"
+                                }
+                            },
+                            {
+                                "tunerId": 14,
+                                "status": {
+                                    "color": "Disabled",
+                                    "message": "Not Configured"
+                                }
+                            },
+                            {
+                                "tunerId": 15,
+                                "status": {
+                                    "color": "Disabled",
+                                    "message": "Not Configured"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "dvbtGroups": [],
+            "atscGroups": [
+                {
+                    "id": "AtscRxId",
+                    "name": "ATSC Input",
+                    "services": {
+                        "found": 51,
+                        "active": 0,
+                        "errored": 0
+                    },
+                    "scan": {
+                        "progressPercent": {
+                            "initialized": false
+                        },
+                        "lastScanned": {
+                            "initialized": true,
+                            "value": "2023-06-14T17:14:31-04:00"
+                        }
+                    },
+                    "blades": [
+                        {
+                            "slotId": 2,
+                            "tuners": [
+                                {
+                                    "tunerId": 0,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Good"
+                                    }
+                                },
+                                {
+                                    "tunerId": 1,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Good"
+                                    }
+                                },
+                                {
+                                    "tunerId": 2,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Good"
+                                    }
+                                },
+                                {
+                                    "tunerId": 3,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Good"
+                                    }
+                                },
+                                {
+                                    "tunerId": 4,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Good"
+                                    }
+                                },
+                                {
+                                    "tunerId": 5,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Good"
+                                    }
+                                },
+                                {
+                                    "tunerId": 6,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Good"
+                                    }
+                                },
+                                {
+                                    "tunerId": 7,
+                                    "status": {
+                                        "color": "Disabled",
+                                        "message": "Not Tuned"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "outputNetworks": {
+            "ntsc": [],
+            "qam": [
+                {
+                    "id": "3000",
+                    "name": "QAM Network",
+                    "services": {
+                        "active": 55,
+                        "errored": 0
+                    },
+                    "blades": [
+                        {
+                            "slotId": 7,
+                            "rfCarriers": [
+                                {
+                                    "rfCarrierId": 0,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 1,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 2,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 3,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 4,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 5,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 6,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 7,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 8,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 9,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 10,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 11,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 12,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 13,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 14,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 15,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 16,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 17,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 18,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 19,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 20,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 21,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 22,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                },
+                                {
+                                    "rfCarrierId": 23,
+                                    "status": {
+                                        "color": "OK",
+                                        "message": "Ok"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "dvbt": [],
+            "ip": [],
+            "streaming": [],
+            "evolveqam": [],
+            "evolveip": [],
+            "diship": []
+        }
+    }
+}

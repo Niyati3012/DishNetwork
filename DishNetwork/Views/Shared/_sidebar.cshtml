@@ -1,5 +1,6 @@
 ﻿@{
     string path = Context.Request.Path;
+    path = '/'+path.Split('/')[1];
 }
 @using DishNetwork.Entity.ViewModels
 @using DishNetwork.Repository.Repository.Interfaces;
@@ -9,6 +10,7 @@
 @{
     var roleid = Convert.ToInt32(CV.RoleId());
     List<MenuItem> Staticmenu = new List<MenuItem>();
+  
     if (roleid == 3)
     {
         var userId = userRepository.GetUserByAspNetId(CV.AspNetUserID());
@@ -51,7 +53,7 @@
                 @foreach (var menuItem in Staticmenu)
                 {
                         <div class="menu-item">
-                            <a class="menu-link @(path == "/Admin" ? "active" : "")" href="@menuItem.Url" >
+                        <a class="menu-link @(path == menuItem.Url ? "active" : "")" href="@menuItem.Url">
                                 <span class="menu-icon">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                     <span class="svg-icon svg-icon-2">
@@ -91,7 +93,7 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </span>
-                            <span class="menu-title">@menuItem.Label</span>
+                            <span class="menu-title">@menuItem.Label </span>
                             </a>
                         </div>
                 }

@@ -29,8 +29,10 @@ namespace DishNetwork.Repository.Repository
 
         public String DevicesAddEdit(DevicesDetails device)
         {
+            string? loginUser = CV.AspNetUserID();
+            int loginResellerId = Convert.ToInt32(CV.UserID());
             Device device1 = device.DeviceId != default ? _context.Devices.First(e => e.DeviceId == device.DeviceId) : new Device();
-            device1.ReSellerId = 2;
+            device1.ReSellerId = loginResellerId;
             device1.Ipaddress = device.Ipaddress;
             device1.Port = device.Port;
             device1.PersonName = device.PersonName;
@@ -49,7 +51,7 @@ namespace DishNetwork.Repository.Repository
             device1.VpnUserName = device.VpnUserName;
             device1.VpnPassword = device.VpnPassword;
 
-            InsertOrUpdateDevice(device1);
+            InsertOrUpdateDevice(device1,loginUser);
             if (device.DeviceId == default)
             {
                 return Constant.DeviceAdded;
@@ -58,10 +60,9 @@ namespace DishNetwork.Repository.Repository
             {
                 return Constant.DeviceEditSuccessfull;
             }
-
         }
 
-        public bool InsertOrUpdateDevice(Device device1)
+        public bool InsertOrUpdateDevice(Device device1,string loginUser)
         {
             if (device1 == null) return false;
             else
@@ -69,7 +70,7 @@ namespace DishNetwork.Repository.Repository
                 if (device1.DeviceId == default)
                 {
                     device1.CreatedDate = DateTime.Now;
-                    device1.CreatedBy = "asdf";
+                    device1.CreatedBy = loginUser;
                     _context.Devices.Add(device1);
                 }
                 else
@@ -84,8 +85,6 @@ namespace DishNetwork.Repository.Repository
 
         public DevicesDetails GetDevicesDetails(int DeviceId)
         {
-            //DevicesDetails details = new DevicesDetails();
-
             DevicesDetails details = (from device in _context.Devices
                       where device.DeviceId == DeviceId
                       select new DevicesDetails
@@ -115,19 +114,17 @@ namespace DishNetwork.Repository.Repository
 
         public string DeleteDevices(int DeviceId)
         {
+            string? loginUser = CV.AspNetUserID();
+
             Device device = _context.Devices.First(x => x.DeviceId == DeviceId);
             if (device != null)
             {
                 device.DeletedAt = DateTime.Now;
-                InsertOrUpdateDevice(device);
+                InsertOrUpdateDevice(device, loginUser);
                 return Constant.UserDeleteSuccessful;
             }
             return Constant.DeviceDeleteUnSuccessfull;
         }
-
-  
-
-
 
     }
 }

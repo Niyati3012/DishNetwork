@@ -11,23 +11,20 @@ namespace DishNetwork.Repository.Repository
     public class JwtService : IJwtService
     {
         private readonly IConfiguration Configuration;
-        public JwtService(IConfiguration configuration) { 
+        public JwtService(IConfiguration configuration)
+        {
             this.Configuration = configuration;
         }
-        public  string GenerateJWTAuthetication(UserInfo userInfo)
+        public string GenerateJWTAuthetication(UserInfo userInfo)
         {
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, userInfo.Email),
                 new Claim(ClaimTypes.Role, userInfo.RoleName),
-                //new Claim("FirstName", userInfo.FirstName),
-                //new Claim("UserId", userInfo.UserId.ToString()),
                 new Claim("Email", userInfo.Email),
                 new Claim("AspNetUserId", userInfo.AspNetUserId.ToString()),
-                //new Claim("RoleId", userInfo.RoleId.ToString()),
                 new Claim("Role", userInfo.Role.ToString()),
                 new Claim("RoleName", userInfo.RoleName),
-                //new Claim(JwtHeaderParameterNames.Jku, userInfo.FirstName),
                 new Claim(JwtHeaderParameterNames.Kid, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.NameIdentifier, userInfo.Email)
             };
@@ -36,7 +33,6 @@ namespace DishNetwork.Repository.Repository
                 Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expires =
-                //DateTime.Now.AddSeconds(5);
                 DateTime.Now.AddDays(5);
 
             var token = new JwtSecurityToken(
@@ -49,7 +45,7 @@ namespace DishNetwork.Repository.Repository
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-        public  bool ValidateToken(string token, out JwtSecurityToken jwtSecurityTokenHandler)
+        public bool ValidateToken(string token, out JwtSecurityToken jwtSecurityTokenHandler)
         {
             jwtSecurityTokenHandler = null;
 
@@ -70,11 +66,9 @@ namespace DishNetwork.Repository.Repository
 
                 }, out SecurityToken validatedToken);
 
-                // Corrected access to the validatedToken
-                
                 jwtSecurityTokenHandler = (JwtSecurityToken)validatedToken;
 
-                if(jwtSecurityTokenHandler != null)
+                if (jwtSecurityTokenHandler != null)
                 {
                     return true;
                 }

@@ -1,4 +1,9 @@
-﻿@using DishNetwork.Repository.Repository.Interfaces
+﻿@{
+	string path = Context.Request.Path;
+	path = path.Split('/')[1];
+}
+
+@using DishNetwork.Repository.Repository.Interfaces
 @inject IDevicesRepository devicesRepository;
 @{
 	var Ip_List = devicesRepository.GetAllDevices();
@@ -8,7 +13,7 @@
 						<!--begin::Brand-->
 						<div class="header-brand">
 							<!--begin::Logo-->
-							<a href="../../demo8/dist/index.html">
+							<a >
 								<img alt="Logo" src="https://cqpplefitting.com/ad_cqpple/Admin/assets/LOGO/Png_UniqueIT-min.png" class="h-40px h-lg-40px" />
 							</a>
 							<!--end::Logo-->
@@ -56,9 +61,9 @@
 								<!--begin::Page title-->
 								<div class="page-title d-flex flex-column me-5">
 									<!--begin::Title-->
-									<h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Dashboard</h1>
+									<h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">@path</h1>
 									<!--end::Title-->
-									<!--begin::Breadcrumb-->
+									@* <!--begin::Breadcrumb-->
 									<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 pt-1">
 										<!--begin::Item-->
 										<li class="breadcrumb-item text-muted">
@@ -74,7 +79,7 @@
 										<li class="breadcrumb-item text-dark">Default</li>
 										<!--end::Item-->
 									</ul>
-									<!--end::Breadcrumb-->
+									<!--end::Breadcrumb--> *@
 								</div>
 								<!--end::Page title-->
 			<div>

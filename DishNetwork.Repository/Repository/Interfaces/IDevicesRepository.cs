@@ -13,7 +13,6 @@ namespace DishNetwork.Repository.Repository.Interfaces
         public List<Device> GetAllDevices();
         public String DevicesAddEdit(DevicesDetails device);
         public DevicesDetails GetDevicesDetails(int DeviceId);
-
         public string DeleteDevices(int DeviceId);
         
     }

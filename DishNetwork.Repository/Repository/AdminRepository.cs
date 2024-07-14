@@ -22,21 +22,20 @@ namespace DishNetwork.Repository.Repository
                                   select admin).ToList();
 
             return result;
-
         }
 
         public string AdminAddEdit(AdminDetails adminDetails)
         {
             try
             {
-
+                 string? loginUser = CV.AspNetUserID();
                 if (adminDetails.AdminId != default)
                 {
                     //edit admin
                     Admin admin = _context.Admins.First(e => e.AdminId == adminDetails.AdminId);
                     admin.Name = adminDetails.Name;
                     admin.ModifiedDate = DateTime.Now;
-                    admin.ModifiedBy = "asdf";
+                    admin.ModifiedBy = loginUser;
 
                     _context.Admins.Update(admin);
                     _context.SaveChanges();
@@ -45,7 +44,6 @@ namespace DishNetwork.Repository.Repository
                 else
                 {
                     //add admin
-                    //AspNetUser aspnetuser = _context.AspNetUsers.Any(e => e.EmailId == adminDetails.EmailId) ? _context.AspNetUsers.First(e => e.EmailId == adminDetails.EmailId) : new AspNetUser();
                     if (!_context.AspNetUsers.Any(e => e.EmailId == adminDetails.EmailId))
                     {
                         AspNetUser user = new AspNetUser
@@ -53,19 +51,29 @@ namespace DishNetwork.Repository.Repository
                             AspNetUserId = Guid.NewGuid().ToString(),
                             EmailId = adminDetails.EmailId,
                             PassWord = "123456",
-                            CreatedBy = "asdf",
+                            CreatedBy = loginUser,
                             CreatedDate = DateTime.Now
                         };
                         _context.AspNetUsers.Add(user);
                         _context.SaveChanges();
 
-                        Admin admin = new Admin();
-                        admin.EmailId = adminDetails.EmailId;
-                        admin.Name = adminDetails.Name;
-                        admin.AspNetUserId = user.AspNetUserId;
-                        admin.CreatedBy = user.AspNetUserId;
-                        admin.CreatedDate = DateTime.Now;
+                        Admin admin = new Admin
+                        {
+                            EmailId = adminDetails.EmailId,
+                            Name = adminDetails.Name,
+                            AspNetUserId = user.AspNetUserId,
+                            CreatedBy = loginUser,
+                            CreatedDate = DateTime.Now
+                        };
                         _context.Admins.Add(admin);
+                        _context.SaveChanges();
+
+                        AspNetUserRole aspNetUserRole = new AspNetUserRole
+                        {
+                            AspNetUserId = user.AspNetUserId,
+                            AspNetRoleId = 1
+                        };
+                        _context.AspNetUserRoles.Add(aspNetUserRole);
                         _context.SaveChanges();
 
                         return Constant.AdminAdded;
@@ -75,16 +83,11 @@ namespace DishNetwork.Repository.Repository
                         return Constant.AdminNotAddedEmailExist;
                     }
                 }
-
-
-
             }
             catch (Exception)
             {
                 throw;
             }
-
-
         }
 
         public bool DeleteAdmin(int adminId)
@@ -94,29 +97,6 @@ namespace DishNetwork.Repository.Repository
             _context.Admins.Update(admin);
             _context.SaveChanges();
             return true;
-        }
-        public bool FileLog(string FileName, string ip)
-        {
-            try
-            {
-                Device id = _context.Devices.First(e => e.Ipaddress == ip);
-                if (id != null)
-                {
-                    FileLog fileLog = new FileLog();
-                    fileLog.DeviceId = id.DeviceId;
-                    fileLog.FirstFile = FileName;
-                    fileLog.CreatedBy = "-1";
-                    fileLog.CreatedDate = DateTime.Now;
-                    _context.FileLogs.Add(fileLog);
-                    _context.SaveChanges();
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
         }
 
     }
