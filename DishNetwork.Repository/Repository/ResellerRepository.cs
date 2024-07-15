@@ -2,6 +2,7 @@
 using DishNetwork.Entity.Models;
 using DishNetwork.Entity.ViewModels;
 using DishNetwork.Repository.Repository.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 
 namespace DishNetwork.Repository.Repository
@@ -9,10 +10,14 @@ namespace DishNetwork.Repository.Repository
     public class ResellerRepository : IResellerRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly ISendEmailRepository _sendEmailRepository;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public ResellerRepository(ApplicationDbContext context)
+        public ResellerRepository(ApplicationDbContext context, ISendEmailRepository sendEmailRepository, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _sendEmailRepository = sendEmailRepository;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         public bool UploadLogo(ResellerDetails model, int ResellerId)
@@ -76,6 +81,7 @@ namespace DishNetwork.Repository.Repository
                     _context.Resellers.Update(reseller);
                     _context.SaveChanges();
                     UploadLogo(resellerDetails, reseller.ResellerId);
+                    
                     return Constant.ResellerEditSuccessfull;
                 }
                 else
@@ -120,7 +126,13 @@ namespace DishNetwork.Repository.Repository
                         _context.SaveChanges();
 
                         UploadLogo(resellerDetails, reseller.ResellerId);
-
+                        string To = reseller.EmailId;
+                        string Subject = "Reseller Added";
+                        var hostname = httpContextAccessor.HttpContext.Request.Host;
+                        var http = httpContextAccessor.HttpContext.Request.Scheme;
+                        var Body = "<html><body> Please Click on this link to Login <a href='" + http + "://" + hostname +"'>click</a> </body></html>"; ;
+                        
+                        //_sendEmailRepository.SendEmail(To, Subject, Body);
                         return Constant.ResellerAdded;
                     }
                     else

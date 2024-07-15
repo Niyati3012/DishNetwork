@@ -489,12 +489,16 @@
       "PackagePath": "staticwebassets\\UploadedLogo\\1\\Logo.png"
     },
     {
-      "Id": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\UploadedLogo\\2\\Logo.jpeg",
-      "PackagePath": "staticwebassets\\UploadedLogo\\2\\Logo.jpeg"
+      "Id": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\UploadedLogo\\2\\Logo.png",
+      "PackagePath": "staticwebassets\\UploadedLogo\\2\\Logo.png"
     },
     {
       "Id": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\UploadedLogo\\3\\Logo.jpg",
       "PackagePath": "staticwebassets\\UploadedLogo\\3\\Logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\UploadedLogo\\4\\Logo.png",
+      "PackagePath": "staticwebassets\\UploadedLogo\\4\\Logo.png"
     },
     {
       "Id": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\_m\\css\\style.bundle.css",

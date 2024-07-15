@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ofejVTeNX8KZl9K0Vh89zt9gKmhXp/2V3igSHG4VRqQ=",
+  "Hash": "GfJlgBSEgN60EOyIdd+FdFGCC2YY/SXuAW+lQCYgeig=",
   "Source": "DishNetwork",
   "BasePath": "_content/DishNetwork",
   "Mode": "Default",
@@ -45313,12 +45313,12 @@
       "OriginalItemSpec": "wwwroot\\UploadedLogo\\1\\Logo.png"
     },
     {
-      "Identity": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\UploadedLogo\\2\\Logo.jpeg",
+      "Identity": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\UploadedLogo\\2\\Logo.png",
       "SourceId": "DishNetwork",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\",
       "BasePath": "_content/DishNetwork",
-      "RelativePath": "UploadedLogo/2/Logo.jpeg",
+      "RelativePath": "UploadedLogo/2/Logo.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -45329,7 +45329,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UploadedLogo\\2\\Logo.jpeg"
+      "OriginalItemSpec": "wwwroot\\UploadedLogo\\2\\Logo.png"
     },
     {
       "Identity": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\UploadedLogo\\3\\Logo.jpg",
@@ -45349,6 +45349,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadedLogo\\3\\Logo.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\UploadedLogo\\4\\Logo.png",
+      "SourceId": "DishNetwork",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\",
+      "BasePath": "_content/DishNetwork",
+      "RelativePath": "UploadedLogo/4/Logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedLogo\\4\\Logo.png"
     }
   ]
 }

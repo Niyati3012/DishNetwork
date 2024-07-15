@@ -100,6 +100,11 @@ namespace DishNetwork.Controllers
             {
                 return RedirectToAction("Index");
             }
+           
+        }
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("jwt");
             return RedirectToAction("Index");
         }
     }
