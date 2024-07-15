@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DishNetwork.Entity")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2588b8c3df5153a49965e8f9c41fc6d340c6cd9a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b0602b1e53fe78241346be12826fd344e2c7795")]
 [assembly: System.Reflection.AssemblyProductAttribute("DishNetwork.Entity")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DishNetwork.Entity")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
