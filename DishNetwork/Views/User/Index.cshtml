@@ -55,6 +55,7 @@
                                                         <td>
                                                             @foreach (var item1 in item.MenuNames)
                                                             {
+
                                                                 <span class="badge badge-light-info">@item1</span>
                                                             }
 
@@ -111,7 +112,7 @@
                 <div class="modal-body">
                     <div class="row" asp-controller="User" asp-action="UserAddEdit">
                         <div class="col-md-12 mb-2">
-                            <input id="UserId" asp-for="UserId"  hidden/>
+                            <input id="UserId" asp-for="UserId" hidden />
                             <label for="exampleFormControlInput1"
                                    class="required form-label">Name</label>
                             <input type="text" asp-for="UserName" id="UserName"
@@ -139,26 +140,31 @@
 
                         </div>
                         <div class="col-md-12 mb-2">
-                            
+
                             <div class="row">
                                 @foreach (var item in Menus)
                                 {
-                                    <div class="col-6 mt-2">
-                                        <div class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input checkbox"
-                                                   type="checkbox"
-                                                   value="@item.MenuId" name="UserMenu"
-                                                   id="@item.MenuId" />
-                                            <label class="form-check-label text-dark"
-                                                   for="@item.MenuId">
-                                                @item.MenuName
-                                            </label>
+                                    if (item.MenuId != 3 && item.MenuId != 8)
+                                    {
+
+                                        <div class="col-6 mt-2">
+                                            <div class="form-check form-check-custom form-check-solid">
+                                                <input class="form-check-input checkbox"
+                                                       type="checkbox"
+                                                       value="@item.MenuId" name="UserMenu"
+                                                       id="@item.MenuId" />
+                                                <label class="form-check-label text-dark"
+                                                       for="@item.MenuId">
+                                                    @item.MenuName
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
+                                    }
+
                                 }
                             </div>
                             <span asp-validation-for="Menus" id="MenusError" class="text-danger small"></span>
-                            <input id="Menus" asp-for="Menus" style="visibility:hidden"/>
+                            <input id="Menus" asp-for="Menus" style="visibility:hidden" />
 
                         </div>
                     </div>
@@ -212,8 +218,8 @@
                     document.getElementById('UserId').value = UserId;
                     document.getElementById('UserName').value = Name;
                     document.getElementById('UserEmail').value = Email;
-                    if(UserId != null){
-                    document.getElementById('UserEmail').disabled = true;
+                    if (UserId != null) {
+                        document.getElementById('UserEmail').disabled = true;
                         const idArray = menus.split(',');
                         // Loop through the array of IDs
                         idArray.forEach(id => {
@@ -229,7 +235,7 @@
                     }
                     document.getElementById('contactNo').value = contactNo;
                     // Split the string into an array of IDs
-                    
+
 
                 })
             }

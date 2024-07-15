@@ -84,7 +84,7 @@
             <!--end::Page title-->
             <div>
                 <div>
-                    <a asp-action="Logout" asp-controller="Login" class="btn btn-secondary">Logout</a>
+                    <button data-bs-toggle="modal" data-bs-target="#LogOutModal" class="btn btn-secondary">Logout</button>
                 </div>
                 @if (Context.Request.Path == "/DevicesDashboard")
                 {
@@ -104,3 +104,37 @@
 
 </div>
 <!--end::Header-->
+<div class="modal fade" tabindex="-1" id="LogOutModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Log Out</h3>
+
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                     data-bs-dismiss="modal"
+                     aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span><span class="path2"></span>
+                    </i>
+                </div>
+                <!--end::Close-->
+            </div>
+            
+                <div class="modal-body">
+                    Are you sure? You want to Log Out?
+                </div>
+
+                <div class="modal-footer">
+                    <button type="reset"
+                            class="btn btn-light"
+                            data-bs-dismiss="modal">
+                        Close
+                    </button>
+                <a asp-action="Logout" asp-controller="Login" class="btn btn-primary">
+                        LogOut
+                    </a>
+                </div>
+        </div>
+    </div>
+</div>

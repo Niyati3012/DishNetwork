@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GfJlgBSEgN60EOyIdd+FdFGCC2YY/SXuAW+lQCYgeig=",
+  "Hash": "+FGGIa42HaBT+lVJNQVuM2MoB/tEcyyDBlFFGHSZuow=",
   "Source": "DishNetwork",
   "BasePath": "_content/DishNetwork",
   "Mode": "Default",
@@ -45368,6 +45368,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadedLogo\\4\\Logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\UploadedLogo\\5\\Logo.jpg",
+      "SourceId": "DishNetwork",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Niyati\\Desktop\\Project\\DishNetwork\\wwwroot\\",
+      "BasePath": "_content/DishNetwork",
+      "RelativePath": "UploadedLogo/5/Logo.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedLogo\\5\\Logo.jpg"
     }
   ]
 }
