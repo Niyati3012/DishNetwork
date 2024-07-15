@@ -37,6 +37,7 @@ namespace DishNetwork.Repository.Repository
                 return false;
             }
         }
+        
         public async Task<List<DevicesDetails>> GetAllIPs()
         {
             try

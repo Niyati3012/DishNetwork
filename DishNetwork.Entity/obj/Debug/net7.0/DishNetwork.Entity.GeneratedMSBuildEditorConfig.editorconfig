@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DishNetwork.Entity
-build_property.ProjectDir = C:\Users\Niyati\Desktop\Project\DishNetwork.Entity\
+build_property.ProjectDir = D:\Project\DishNetwork\DishNetwork.Entity\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
